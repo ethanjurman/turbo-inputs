@@ -32,6 +32,9 @@ module.exports = {
   '63214':{src:'/svgs/hc.svg',alt:"HALF CIRCLE BACK",className:""},
   '63214789':{src:'/svgs/arrow.svg',alt:"360 MOTION BACK",className:"flip"},
   '41236987':{src:'/svgs/arrow.svg',alt:"360 MOTION FORWARD",className:""},
-  '<':{src:'/svgs/left_bracket.svg',alt:""},
-  '>':{src:'/svgs/left_bracket.svg',alt:"",className:"flip"}
+  '(':{src:'/svgs/left_bracket.svg',alt:""},
+  ')':{src:'/svgs/left_bracket.svg',alt:"",className:"flip"},
+  'cb':{src:'/svgs/custom_button.svg',alt:""},
+  'ct':{src:'/svgs/custom_text.svg',alt:""},
+  'air':{src:'/svgs/air.svg',alt:""},
 }

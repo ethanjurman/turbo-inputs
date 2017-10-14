@@ -11,7 +11,9 @@ module.exports = () => {
       <div>
         Thank you for using Tram-One!<br>
         To get started, edit <code>turbo-inputs/pages/home.js</code>.
-        <Input name="lp"></Input>
+        <Input name="air"></Input>
+        <Input name="cb"></Input>
+        <Input name="ct"></Input>
       </div>
     </div>
   `
