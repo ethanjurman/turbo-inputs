@@ -1,9 +1,12 @@
 const html = require('tram-one').html()
 
-module.exports = ({text}) => {
+module.exports = ({text, y}) => {
   const extraWidth = (text.length) - 3
+  const style = `
+    transform: translateY(${y}px)
+  `
   return html`
-    <svg xmlns="http://www.w3.org/2000/svg" width="${48 + extraWidth * 6}" height="48" viewBox="${0 - extraWidth * 100} 0 ${708.66142 + extraWidth * 200} 708.66141">
+    <svg style=${style} xmlns="http://www.w3.org/2000/svg" width="${48 + extraWidth * 6}" height="48" viewBox="${0 - extraWidth * 100} 0 ${708.66142 + extraWidth * 200} 708.66141">
       <defs>
         <filter id="blur" x="-.0788" width="1.1575" y="-.1403" height="1.2806" color-interpolation-filters="sRGB">
           <feGaussianBlur stdDeviation="12.7347"/>

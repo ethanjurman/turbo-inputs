@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" viewBox="0 0 708.66142 708.66141"><defs><linearGradient id="a"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#0aff00"/></linearGradient><radialGradient xlink:href="#a" id="b" cx="374.7093" cy="692.9971" fx="374.7093" fy="692.9971" r="295.5962" gradientUnits="userSpaceOnUse" gradientTransform="translate(-24.235)"/></defs><circle cx="350.4746" cy="692.9971" r="295.5962" fill="url(#b)" fill-rule="evenodd" transform="translate(0 -343.7)"/><text style="line-height:0%;text-align:center" x="285.8945" y="1043.8649" transform="matrix(1.22466 0 0 .81656 0 -343.7)" font-size="18.1118" font-family="sans-serif" letter-spacing="0" word-spacing="0" text-anchor="middle" stroke-width="15.0932"><tspan x="285.8945" y="1043.8649" style="line-height:1.25;-inkscape-font-specification:'Impact Condensed';text-align:center" font-stretch="condensed" font-size="513.4921" font-family="Impact" fill="#fff" stroke="#000" stroke-width="17.9529">D</tspan></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 708.66142 708.66141">
+  <defs>
+    <linearGradient id="a">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#0aff00"/>
+    </linearGradient>
+  </defs>
+  <circle cx="354.3307" cy="354.3307" r="295.2756" fill="#00ff03" fill-rule="evenodd"/>
+  <text style="line-height:0%;text-align:center" x="289.3311" y="636.8984" transform="scale(1.22465 .81656)" font-size="18.1119" letter-spacing="0" word-spacing="0" font-family="sans-serif" text-anchor="middle" stroke-width="15.0933">
+    <tspan x="289.3311" y="636.8984" style="line-height:1.25;-inkscape-font-specification:'Impact Condensed';text-align:center" font-stretch="condensed" font-size="513.4943" font-family="Impact" fill="#fff" stroke="#000" stroke-width="17.953">A</tspan>
+  </text>
+</svg>
