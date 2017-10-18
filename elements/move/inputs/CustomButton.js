@@ -10,7 +10,7 @@ module.exports = ({text, colors}) => {
   const id = buttonColors.join('').split('#').join('')
   const radialId = id + '-rid'
   return html`
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" viewBox="0 0 708.66142 708.66141">
+    <g>
       <defs>
         <linearGradient id="${id}">
           <stop offset="0" stop-color="${buttonColors[1]}"/>
@@ -25,6 +25,6 @@ module.exports = ({text, colors}) => {
         <tspan x="285.8945" y="1043.8649" style="line-height:1.25;-inkscape-font-specification:'Impact Condensed';text-align:center" font-stretch="condensed" font-size="513.4921" font-family="Impact" fill="#fff" stroke="#000" stroke-width="17.9529">${text}
         </tspan>
       </text>
-    </svg>
+    </g>
   `
 }

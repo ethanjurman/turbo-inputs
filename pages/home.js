@@ -23,25 +23,33 @@ module.exports = () => {
     <div>
     <img src="./svgs/fc.svg" />
     <img src="./svgs/hc.svg" />
+    <img src="./svgs/qc.svg" />
       <div>
-        <Air />
-        <CustomButton text="A" />
-        <CustomButton text="B" colors=${['#f00','#f00']} />
-        <CustomButton text="Y" colors=${['#777','#777']} />
-        <CustomButton text="X" colors=${['#777','#777']} />
-        <CustomButton text="Z" colors=${'#909'} />
+        <Input>
+          <Air />
+          <CustomButton text="A" />
+          <CustomButton text="B" colors=${['#f00','#f00']} />
+          <CustomButton text="Y" colors=${['#777','#777']} />
+          <CustomButton text="X" colors=${['#777','#777']} />
+          <CustomButton text="Z" colors=${'#909'} />
+        </Input>
       </div>
       <div>
-        <Arrow />
-        <Arrow rotation='45'/>
-        <Arrow rotation='90'/>
-        <Arrow rotation='135'/>
-        <Arrow rotation='180'/>
+      <Input>
+        <g>
+          <Arrow />
+          <Arrow rotation='45'/>
+          <Arrow rotation='90'/>
+          <Arrow rotation='135'/>
+          <Arrow rotation='180'/>
+        </g>
         <Arrow rotation='225'/>
-        <Arrow rotation='260'/>
+        <Arrow rotation='270'/>
         <Arrow rotation='315'/>
+      </Input>
       </div>
       <div>
+        <img src="./svgs/custom_text.svg" />
         <CustomText text="HP" />
         <CustomText text="TAP" />
         <CustomText text="KICK" y=-10 />
