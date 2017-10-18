@@ -24,14 +24,15 @@ module.exports = () => {
     <img src="./svgs/fc.svg" />
     <img src="./svgs/hc.svg" />
     <img src="./svgs/qc.svg" />
+    <img src="./svgs/dp.svg" />
       <div>
         <Input>
           <Air />
           <CustomButton text="A" />
-          <CustomButton text="B" colors=${['#f00','#f00']} />
-          <CustomButton text="Y" colors=${['#777','#777']} />
-          <CustomButton text="X" colors=${['#777','#777']} />
-          <CustomButton text="Z" colors=${'#909'} />
+          <CustomButton text="B" color='#f00' />
+          <CustomButton text="Y" color='#777' />
+          <CustomButton text="X" color='#777' />
+          <CustomButton text="Z" color='#909' />
         </Input>
       </div>
       <div>
@@ -49,23 +50,26 @@ module.exports = () => {
       </Input>
       </div>
       <div>
-        <img src="./svgs/custom_text.svg" />
-        <CustomText text="HP" />
-        <CustomText text="TAP" />
-        <CustomText text="KICK" y=-10 />
-        <CustomText text="HOLD" y=10 />
-        <CustomText text="BLOCK" />
-        <CustomText text="COMBO" />
+        <Input>
+          <CustomText text="HP" />
+          <CustomText text="TAP" />
+          <CustomText text="KICK"/>
+          <CustomText text="HOLD"/>
+          <CustomText text="BLOCK" />
+          <CustomText text="SUPER COMBO" />
+        </Input>
       </div>
       <div>
-        <DP />
-        <FC />
-        <HC />
-        <DP flip />
-        <FC flip />
-        <HC flip />
-        <FC flip rotation='45'/>
-        <HC rotation='45' />
+        <Input>
+          <DP />
+          <FC />
+          <HC />
+          <DP flip />
+          <FC flip />
+          <HC flip />
+          <FC flip rotation='45'/>
+          <HC rotation='45' />
+        </Input>
       </div>
       <div>
         <Kick />

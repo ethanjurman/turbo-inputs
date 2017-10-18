@@ -1,12 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 708.66142 708.66141">
-  <defs>
-    <linearGradient id="a">
-      <stop offset="0" stop-color="#fff"/>
-      <stop offset="1" stop-color="#0aff00"/>
-    </linearGradient>
-  </defs>
-  <circle cx="354.3307" cy="354.3307" r="295.2756" fill="#00ff03" fill-rule="evenodd"/>
-  <text style="line-height:0%;text-align:center" x="289.3311" y="636.8984" transform="scale(1.22465 .81656)" font-size="18.1119" letter-spacing="0" word-spacing="0" font-family="sans-serif" text-anchor="middle" stroke-width="15.0933">
-    <tspan x="289.3311" y="636.8984" style="line-height:1.25;-inkscape-font-specification:'Impact Condensed';text-align:center" font-stretch="condensed" font-size="513.4943" font-family="Impact" fill="#fff" stroke="#000" stroke-width="17.953">A</tspan>
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 500 500">
+  <circle cx="250" cy="250" r="225.0702" fill="#00ff03" fill-rule="evenodd"/>
+  <text style="line-height:0%;text-align:center" x="204.1391" y="460.8719" transform="scale(1.22465 .81656)" font-size="13.8056" letter-spacing="0" word-spacing="0" font-family="sans-serif" text-anchor="middle" stroke-width="11.5047">
+    <tspan x="204.1391" y="460.8719" style="line-height:1.25;-inkscape-font-specification:'Impact Condensed';text-align:center" font-stretch="condensed" font-size="391.4048" font-family="Impact" fill="#fff" stroke="#000" stroke-width="13.6845">A</tspan>
   </text>
 </svg>
