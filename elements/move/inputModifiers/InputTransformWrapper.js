@@ -7,7 +7,7 @@ module.exports = (component) => {
     WrappingComponent: component
   });
 
-  return (attrs = {}) => html`
+  return (attrs) => html`
     <g style=${getTransformStyle(attrs)}>
       <WrappingComponent ${attrs} />
     </g>
