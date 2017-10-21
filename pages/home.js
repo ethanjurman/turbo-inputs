@@ -13,9 +13,8 @@ const html = Tram.html({
   FC: require('../elements/move/inputs/FC'),
   HC: require('../elements/move/inputs/HC'),
   Kick: require('../elements/move/inputs/Kick'),
-  Kick2x: require('../elements/move/inputs/Kick2x'),
-  Kick3x: require('../elements/move/inputs/Kick3x'),
-  KickStrength: require('../elements/move/inputs/KickStrength'),
+  Kick: require('../elements/move/inputs/Kick'),
+  Punch: require('../elements/move/inputs/Punch'),
 })
 
 module.exports = () => {
@@ -47,14 +46,23 @@ module.exports = () => {
         <Arrow rotation='225'/>
         <Arrow rotation='270'/>
         <Arrow rotation='315'/>
+        <g>
+          <Arrow rotation='90'/>
+          <CustomText text="HOLD" y='0' x='00' font='1' stroke='2' />
+        </g>
+        <g>
+          <Arrow rotation='0'/>
+          <CustomText text="HOLD" y='180' x='00' font='1' stroke='2' />
+        </g>
       </Input>
       </div>
       <div>
         <Input>
           <CustomText text="HP" />
-          <CustomText text="TAP" />
-          <CustomText text="KICK"/>
-          <CustomText text="HOLD"/>
+          <CustomText text="TAP" blur />
+          <CustomText text="KICK" />
+          <CustomText text="HOLD" />
+          <CustomText text="HOLD" blur />
           <CustomText text="BLOCK" />
           <CustomText text="SUPER COMBO" />
         </Input>
@@ -72,16 +80,28 @@ module.exports = () => {
         </Input>
       </div>
       <div>
-        <Kick />
-        <Kick2x />
-        <Kick3x />
-        <KickStrength strength='LK'/>
-        <KickStrength strength='MK'/>
-        <KickStrength strength='HK'/>
-        <KickStrength text="LK" color=${["#fff", "#46d5d3"]}/>
-        <KickStrength text='MK' color=${["#fff", "#49a5ff"]}/>
-        <KickStrength text='HK' color=${["#fff", "#0200f1"]}/>
-        <KickStrength text="HOLD" color=${"#ccc"}/>
+        <Input>
+          <g>
+            <Kick />
+            <CustomText text="LK" y='180' x='-100' font='1.5' />
+          </g>
+          <Kick text='LK'/>
+          <Kick text="LK" color='#46d5d3'/>
+          <Kick text='MK' color='#49a5ff'/>
+          <Kick text='HK' color='#5075f1'/>
+          <Kick color='#000' fill='#7d9fbd'/>
+        </Input>
+      </div>
+      <div>
+        <Input>
+          <Punch />
+          <Punch text='LP'/>
+          <Punch color='#000' fill='#fddeac'/>
+          <g>
+            <Punch color='#000' fill='#7d9fbd'/>
+            <CustomText text="HOLD" y='180' x='00' font='1' stroke='2' />
+          </g>
+        </Input>
       </div>
     </div>
   `
