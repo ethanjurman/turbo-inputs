@@ -83,25 +83,25 @@ module.exports = () => {
       <div>
         <Input>
           <g>
-            <Kick />
-            <CustomText text="LK" y='180' x='-100' font='1.5' />
+            <Kick fg='#7d9fbd'/>
+            <CustomText text="HOLD" y='100' x='00' font='1' stroke='2' />
           </g>
-          <Kick text='LK'/>
-          <Kick text="LK" color='#46d5d3'/>
-          <Kick text='MK' color='#49a5ff'/>
-          <Kick text='HK' color='#5075f1'/>
-          <Kick color='#000' fill='#7d9fbd'/>
+          <g>
+            <Punch fg='#7d9fbd'/>
+            <CustomText text="HOLD" y='100' x='00' font='1' stroke='2' />
+          </g>
+          <Kick />
+          <Punch />
         </Input>
       </div>
       <div>
         <Input>
-          <Punch />
-          <Punch text='LP'/>
-          <Punch color='#000' fill='#fddeac'/>
-          <g>
-            <Punch color='#000' fill='#7d9fbd'/>
-            <CustomText text="HOLD" y='180' x='00' font='1' stroke='2' />
-          </g>
+          <Punch text="LP" bg='#ffc107' fg='#fff'/>
+          <Punch text='MP' bg='#ff9800' fg='#fff'/>
+          <Punch text='HP' bg='#ff5722' fg='#fff'/>
+          <Kick text="LK" bg='#90caf9' fg='#fff'/>
+          <Kick text='MK' bg='#42a5f5' fg='#fff'/>
+          <Kick text='HK' bg='#1565c0' fg='#fff'/>
         </Input>
       </div>
     </div>
