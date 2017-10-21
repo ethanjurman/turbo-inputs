@@ -1,0 +1,21 @@
+const html = require('tram-one').html()
+const InputTransformWrapper = require('../inputModifiers/InputTransformWrapper')
+
+const QC = () => html`
+  <g>
+    <g transform="translate(-26.732 -549.767)" stroke-linejoin="round">
+      <circle r="143.7884" cy="799.7672" cx="276.7315" fill="#bdbdbd" stroke="#747474" stroke-width="12.2008"/>
+      <circle r="78.6612" cy="799.7672" cx="276.7315" fill="#727272" stroke="#3f3f3f" stroke-width="9.6184"/>
+    </g>
+    <g fill="#ffec00" fill-rule="evenodd" stroke="#000">
+      <path d="M403.2358 195.3732l66.2913 66.2912H336.945z" stroke-width="10.4167"/>
+      <path d="M236.107 314.95l39.1003-.842 2.7964 72.7307s3.7773 28.9186 2.4312 36.2212c-14.4787 2.8952-39.9888 4.3224-39.9888 4.3224z" stroke-width="13.5417"/>
+    </g>
+    <g fill="none" stroke-linejoin="round">
+      <path d="M404.1515 260.7793a154.528 154.528 0 0 1-127.318 141.401" stroke="#000" stroke-width="55.9271"/>
+      <path d="M404.528 250a154.528 154.528 0 0 1-46.218 110.217 154.528 154.528 0 0 1-111.007 44.2874" stroke="#ffec00" stroke-width="31.4961"/>
+    </g>
+  </g>
+`
+
+module.exports = InputTransformWrapper(QC)

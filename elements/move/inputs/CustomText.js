@@ -2,7 +2,7 @@ const html = require('tram-one').html()
 
 module.exports = ({text, x, y, font, stroke, blur}) => {
   const fontSize = (font * 255 ) || 1020 / text.length
-  const blurText = blur !== 'undefined' ? blur : false;
+  const blurText = blur !== 'undefined' ? blur : false
   const style = `
     transform: translateX(${x || 0}px) translateY(${y || 0}px)
   `

@@ -12,22 +12,21 @@ const html = Tram.html({
   DP: require('../elements/move/inputs/DP'),
   FC: require('../elements/move/inputs/FC'),
   HC: require('../elements/move/inputs/HC'),
+  QC: require('../elements/move/inputs/QC'),
   Kick: require('../elements/move/inputs/Kick'),
   Kick: require('../elements/move/inputs/Kick'),
   Punch: require('../elements/move/inputs/Punch'),
+  Next: require('../elements/move/inputs/Next'),
 })
 
 module.exports = () => {
   return html`
     <div>
-    <img src="./svgs/fc.svg" />
-    <img src="./svgs/hc.svg" />
-    <img src="./svgs/qc.svg" />
-    <img src="./svgs/dp.svg" />
       <div>
         <Input>
           <Air />
           <CustomButton text="A" />
+          <Next />
           <CustomButton text="B" color='#f00' />
           <CustomButton text="Y" color='#777' />
           <CustomButton text="X" color='#777' />
@@ -51,7 +50,7 @@ module.exports = () => {
           <CustomText text="HOLD" y='0' x='00' font='1' stroke='2' />
         </g>
         <g>
-          <Arrow rotation='0'/>
+          <Arrow rotation='180'/>
           <CustomText text="HOLD" y='180' x='00' font='1' stroke='2' />
         </g>
       </Input>
@@ -77,6 +76,8 @@ module.exports = () => {
           <HC flip />
           <FC flip rotation='45'/>
           <HC rotation='45' />
+          <QC />
+          <QC rotation='90'/>
         </Input>
       </div>
       <div>
