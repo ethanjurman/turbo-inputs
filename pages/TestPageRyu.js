@@ -18,6 +18,7 @@ const html = Tram.html({
   Punch: require('../elements/move/inputs/Punch'),
   Next: require('../elements/move/inputs/Next'),
   LeftParen: require('../elements/move/inputs/LeftParen'),
+  RightParen: require('../elements/move/inputs/RightParen'),
 })
 
 module.exports = () => {
@@ -25,13 +26,37 @@ module.exports = () => {
     <div>
       <div>
         <Input>
-          <LeftParen />
-          <Air />
-          <LeftParen flip />
-          <QC flip />
-          <Kick />
+          <QC /> <Punch />
         </Input>
       </div>
+
+      <div>
+        <Input>
+          <DP /> <Punch />
+        </Input>
+      </div>
+
+      <div>
+        <Input>
+          <LeftParen /> <Air /> <RightParen /> <QC flip /> <Kick />
+        </Input>
+      </div>
+
+      <div>
+        <Input>
+          <HC /> <Kick />
+        </Input>
+      </div>
+
+      <div>
+        <Input>
+        <QC /> <QC /> <Punch />
+        <QC /> <QC /> <Punch />
+        <QC /> <QC /> <Punch /> <LeftParen /> <RightParen />
+        </Input>
+      </div>
+
+
       <div>
         <Input>
           <Air />
@@ -108,7 +133,7 @@ module.exports = () => {
           </g>
           <Kick />
           <Punch />
-          <g addedX='400'>
+          <g width='900'>
             <Punch x='400' />
             <Punch x='200' />
             <Punch />

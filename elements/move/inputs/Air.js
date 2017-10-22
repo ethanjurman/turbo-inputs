@@ -1,6 +1,6 @@
 const html = require('tram-one').html()
 
-module.exports = () => html`
+module.exports = (attrs) => html`
 <g word-spacing="0" font-family="sans-serif" text-anchor="middle">
   <text style="line-height:0%;text-align:center" x="301.8944" y="644.6977" font-size="8.7404" letter-spacing="0" stroke-width="7.2836" fill="#fff" transform="matrix(1.0436 0 0 .69585 -59.25 -23.35)">
     <tspan x="301.8944" y="644.6977" style="line-height:0;-inkscape-font-specification:'Impact Condensed';text-align:center" font-stretch="condensed" font-size="247.8005" dx="0 3" font-family="Impact" stroke="#bbb" stroke-width="8.6636">AIR</tspan>

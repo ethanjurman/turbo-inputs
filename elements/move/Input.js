@@ -1,19 +1,26 @@
 const html = require('tram-one').html()
 
+translateXMatch = /translateX\((-?\d+)px\)/
+
+const getTranslateX = (child) => {
+  return +(child.style.transform.match(translateXMatch) || [0,0])[1]
+}
+
 module.exports = (attrs, children) => {
   const childElements = children.filter((child) => typeof child !== 'string')
   const childrenLength = childElements.length;
-  let addedXArray = []
-  let totalAddedX = 0
+  let widthArray = []
+  let totalWidth = 0
   const newChildren = childElements.map((child, index) => {
-    const addedX = +child.getAttribute('addedX') || 0
-    child.setAttribute('style', `transform: translateX(${(index * 500) + addedXArray[index - 1]}px) ${child.style.transform}; transform-origin: 250px 250px;`)
-    totalAddedX += addedX
-    addedXArray.push(addedX)
+    const width = +child.getAttribute('width') || 500
+    // const translateX = +child.style.transform.translateX
+    child.setAttribute('style', `transform: translateX(${totalWidth + getTranslateX(child)}px) ${child.style.transform}; transform-origin: 250px 250px;`)
+    totalWidth += width
+    widthArray.push(width)
     return child
   })
   return html`
-    <svg xmlns="http://www.w3.org/2000/svg" width="${(48 * childrenLength) + (totalAddedX / 48) }" height="48" viewBox="0 0 ${(500 * childrenLength) + totalAddedX} 500">
+    <svg xmlns="http://www.w3.org/2000/svg" width="${(totalWidth / 500) * 48}" height="48" viewBox="0 0 ${totalWidth} 500">
       ${newChildren}
     </svg>
   `
