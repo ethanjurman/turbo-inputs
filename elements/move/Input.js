@@ -13,7 +13,6 @@ module.exports = (attrs, children) => {
   let totalWidth = 0
   const newChildren = childElements.map((child, index) => {
     const width = +child.getAttribute('width') || 500
-    // const translateX = +child.style.transform.translateX
     child.setAttribute('style', `transform: translateX(${totalWidth + getTranslateX(child)}px) ${child.style.transform}; transform-origin: 250px 250px;`)
     totalWidth += width
     widthArray.push(width)
