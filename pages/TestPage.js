@@ -4,7 +4,7 @@ const inputsLocation = '../elements/move/inputs'
 
 const html = Tram.html({
   header: require('../elements/header'),
-  Input: require('../elements/move/input'),
+  Input: require('../elements/move/Input'),
   Air: require('../elements/move/inputs/Air'),
   CustomButton: require('../elements/move/inputs/CustomButton'),
   Arrow: require('../elements/move/inputs/Arrow'),
@@ -32,16 +32,18 @@ module.exports = () => {
           <CustomButton text="X" color='#777' />
           <CustomButton text="Z" color='#909' />
         </Input>
+        <span style="float:right">
+          <Input>
+            <CustomButton text="A" color='#d84f4d' />
+            <CustomButton text="B" color='#ca9c2c' />
+            <CustomButton text="C" color='#00a266' />
+            <CustomButton text="D" color='#006a9c' />
+          </Input>
+        </span>
       </div>
       <div>
       <Input>
-        <g>
-          <Arrow />
-          <Arrow rotation='45'/>
-          <Arrow rotation='90'/>
-          <Arrow rotation='135'/>
-          <Arrow rotation='180'/>
-        </g>
+        <Arrow />
         <Arrow rotation='225'/>
         <Arrow rotation='270'/>
         <Arrow rotation='315'/>
@@ -92,6 +94,12 @@ module.exports = () => {
           </g>
           <Kick />
           <Punch />
+          <g addedX='400'>
+            <Punch x='400' />
+            <Punch x='200' />
+            <Punch />
+          </g>
+          <Kick />
         </Input>
       </div>
       <div>

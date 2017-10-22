@@ -1,12 +1,9 @@
 const html = require('tram-one').html()
+const InputTransformWrapper = require('../inputModifiers/InputTransformWrapper')
 
-module.exports = ({rotation, x}) => {
-  const style = `
-    transform: rotate(${rotation || 0}deg);
-    transform-origin: 250px 250px;
-  `
+const Arrow = () => {
   return html`
-  <g style=${style}>
+  <g>
     <g transform="translate(-26.732 -549.767)" stroke-linejoin="round">
       <circle r="143.7884" cy="799.7672" cx="276.7315" fill="#bdbdbd" stroke="#747474" stroke-width="12.2008"/>
       <circle r="78.6612" cy="799.7672" cx="276.7315" fill="#727272" stroke="#3f3f3f" stroke-width="9.6184"/>
@@ -15,3 +12,5 @@ module.exports = ({rotation, x}) => {
   </g>
   `
 }
+
+module.exports = InputTransformWrapper(Arrow)

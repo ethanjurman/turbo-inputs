@@ -1,8 +1,9 @@
 const html = require('tram-one').html({
   CustomText: require('./CustomText')
 })
+const InputTransformWrapper = require('../inputModifiers/InputTransformWrapper')
 
-module.exports = ({text, bg, fg}) => {
+const Punch = ({text, bg, fg}) => {
   const backgroundColor = bg || '#000'
   const foregroundColor = fg || '#ffddad'
 
@@ -20,3 +21,5 @@ module.exports = ({text, bg, fg}) => {
     </g>
   `
 }
+
+module.exports = InputTransformWrapper(Punch)

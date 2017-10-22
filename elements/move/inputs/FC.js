@@ -1,8 +1,8 @@
 const html = require('tram-one').html()
-const getTransformStyle = require('../inputModifiers/getTransformStyle');
+const InputTransformWrapper = require('../inputModifiers/InputTransformWrapper')
 
-module.exports = (attrs) => html`
-<g style=${getTransformStyle(attrs)}>
+const FC = (attrs) => html`
+<g>
   <g transform="translate(-26.731506,-549.76731)">
     <circle
        style="fill:#bdbdbd;stroke:#747474;stroke-width:12.2008276"
@@ -33,3 +33,5 @@ module.exports = (attrs) => html`
   </g>
 </g>
 `
+
+module.exports = InputTransformWrapper(FC)
