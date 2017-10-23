@@ -1,28 +1,66 @@
 const html = require('tram-one').html()
 
-const moveStyle = `
-  border-radius: 10px;
-  background: #575;
-  padding: 5px;
-  margin: 5px;
-`
-const moveNameStyle = `
-  color: white;
-  font-weight: bolder;
-  background: #363;
-  border-radius: 5px 5px 0px 0px;
-  padding: 0px 5px;
-`
-const moveInputStyle = `
-`
-const moveNotesStyle = `
-`
-const typeNotesStyle = `
-`
+const expandColor = (color) => {
+  if (color.length == 4 && color.match(/(\#[\da-f]{3})/i)) {
+    return color.slice(1).split('').reduce((endColor, color) => endColor += `${color}${color}`,'#')
+  }
+  return color
+}
+
+const shrinkColor = (color) => {
+  if (color.match(/(\#[\da-f]{6})/i)) {
+    return color.split('').reduce((endColor, color, index) => {
+      return endColor += index % 2 ? color : ''
+    },'#')
+  }
+  return color
+}
+
+const darkenColor = (color) => {
+  if (color.match(/(\#[\da-f]*)/i)){
+    return color.slice(1).split('').reduce((endColor, color) => {
+      const modColor = color == '0' ? '1' : color
+      return endColor += (parseInt(modColor, 16) - 1).toString(16)
+    }, '#')
+  }
+  return color
+}
+
+const isBright = (color) => {
+  const modColor = shrinkColor(color)
+  if (modColor.match(/(\#[\da-f]{3})/i)) {
+    return modColor.slice(1).split('').reduce((result, color) => {
+      return !!color.match(/[e-f]/i) || result
+    }, false)
+  }
+  return false
+}
+
+const getStyles = (attrs) => {
+  const {typeColor = '#4caf50'} = attrs
+  return {
+    moveStyle: `
+      border-radius: 10px;
+      background: ${typeColor};
+      padding: 5px;
+      margin: 5px;
+    `,
+    moveNameStyle: `
+      color: white;
+      font-weight: bolder;
+      background: ${darkenColor(typeColor)};
+      border-radius: 5px 5px 0px 0px;
+      padding: 0px 5px;
+    `,
+    moveInputStyle: ``,
+    moveNotesStyle: ``,
+    typeNotesStyle: ``,
+  }
+}
 
 module.exports = (attrs) => {
   const {moveName, moveInput, moveNotes, typeColor, typeNotes} = attrs
-  console.log(attrs)
+  const {moveStyle, moveNameStyle, moveInputStyle, moveNotesStyle, typeNotesStyle} = getStyles(attrs)
   return html`
     <div style=${moveStyle} ${attrs}>
       <div style=${moveNameStyle}>

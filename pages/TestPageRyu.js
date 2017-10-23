@@ -50,22 +50,25 @@ module.exports = () => {
       />
 
       <Move
-        moveName="Super Art I: Shinkuu-Hadouken"
+        typeColor='#d44336'
+        moveName="Super Art I : Shinkuu-Hadouken"
         moveInput=${html`<Input> <QC /> <QC /> <Punch /> </Input>`}
       />
 
       <Move
-        moveName="Super Art II: Shin Shoryuken"
+        typeColor='#d44336'
+        moveName="Super Art II : Shin Shoryuken"
         moveInput=${html`<Input> <QC /> <QC /> <Punch /> </Input>`}
       />
 
       <Move
-        moveName="Super Art III: Denjin Hadouken"
+        typeColor='#d44336'
+        moveName="Super Art III : Denjin Hadouken"
         moveInput=${html`<span> <Input> <QC /> <QC /> <Punch />
           <LeftParen />
             <g>
               <Punch fg='#7d9fbd'/>
-              <CustomText text="HOLD" y='100' x='00' font='1' stroke='2' />
+              <CustomText text="HOLD" y='100' />
             </g>
         </Input> to Charge <Input> <RightParen /> </Input> </span>`}
       />

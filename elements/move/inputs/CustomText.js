@@ -1,10 +1,15 @@
 const html = require('tram-one').html()
 
-module.exports = ({text, x, y, font, stroke, blur}) => {
+module.exports = ({
+  text,
+  font,
+  x = 0, y = 0,
+  stroke = text.length / 2,
+  blur = false,
+}) => {
   const fontSize = (font * 255 ) || 1020 / text.length
-  const blurText = blur !== 'undefined' ? blur : false
   const style = `
-    transform: translateX(${x || 0}px) translateY(${y || 0}px)
+    transform: translateX(${x}px) translateY(${y}px)
   `
   return html`
     <g style=${style}>
@@ -14,7 +19,7 @@ module.exports = ({text, x, y, font, stroke, blur}) => {
         </filter>
       </defs>
       <g font-size="9.7214" letter-spacing="0" word-spacing="0" font-family="sans-serif" text-anchor="middle" stroke="#000" stroke-width="8.1012">
-        <text style="line-height:0%;text-align:center;display:${blurText ? 'initial': 'none'}" x="282.8539" y="1006.5119" transform="matrix(.85747 0 0 .57173 6.873 -267.616)" font-size="${fontSize}" filter="url(#blur_text)">
+        <text style="line-height:0%;text-align:center;display:${blur ? 'initial': 'none'}" x="282.8539" y="1006.5119" transform="matrix(.85747 0 0 .57173 6.873 -267.616)" font-size="${fontSize}" filter="url(#blur_text)">
           <tspan x="282.8539" y="1006.5119" style="line-height:0;-inkscape-font-specification:'Impact Condensed';text-align:center" font-stretch="condensed" font-family="Impact" fill="#fff" stroke-width="9">${text}</tspan>
         </text>
         <text style="line-height:0%;text-align:center" x="265.3037" y="545.8637" transform="matrix(.85746 0 0 .57173 21.922 -4.25)" font-size="${fontSize}">

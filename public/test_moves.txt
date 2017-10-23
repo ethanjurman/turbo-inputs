@@ -1,0 +1,5 @@
+special:Hadouken:236.p
+special:Shoryuken:623.p
+special:Tatsumaki Senpukyaku / Air:(air).214.k
+special:Joudan Sokutou Geri:41236.k
+super:Super Art I: Shinkuu-Hadouken:41236.k

@@ -21,6 +21,32 @@ So if there is a game which doesn't yet exist on turbo inputs, I've created a la
 // Comments are ignored and are described using two forward slashes "//".
 // Use them at your leisure!
 
+// Adding a move
+//
+// An example of a Ryu's Tatsumaki (Hurricane Kick) is shown below:
+
+special:Tatsumaki:(air).214.k
+
+// "special"     is the type
+// "Tatsumaki"   is the name
+// "(air).214.k" is the input: air (optional), quarter circle back, kick
+
+// Adding a type
+//
+// An example of a level 3 super is shown below:
+
+level3 -> type:#f55:requires 3 bars
+level3 -> type::requires 3 bars
+aIsm -> type::A-ISM
+xIsm -> type::X-ISM
+zIsm -> type::Z-ISM
+
+special.aIsm.xIsm:Switch to Crane Style:3kx
+
+// "#f55"             is the color of the type
+// "requires 3 bars"  is the notes of the type
+
+
 // Adding a custom button
 //
 // You get Kick "k" and Punch "p" for free, anything else you'll have to define.
@@ -43,13 +69,17 @@ LK -> k:#90caf9:#fff:LK | cb:#2fa01e:A
 
 // A move is constructed of a type, name, input and notes
 // You get "command", "special", and "super" for free, anything else you'll have to define
-// An example of a Ryu's Tatsumaki (Hurricane Kick) is shown below:
 
-special:Tatsumaki:214.k
-
-type -> color:note
 
 air.214.k
 lp.lp.6.lk.hp
 
+```
+
+
+```
+sp -> special:::
+special:Hadouken:236.p
+special:Shoryuken:623.p
+special:Tatsumaki Senpukyaku / Air:(air).214.k
 ```

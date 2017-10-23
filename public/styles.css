@@ -1,0 +1,9 @@
+html * {
+  color: white;
+  font-family: 'Indie Flower', cursive;
+}
+
+svg * {
+  font-family:'Impact Condensed';
+  color: inherit;
+}
