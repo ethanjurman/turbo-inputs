@@ -20,6 +20,7 @@ const html = Tram.html({
   LeftParen: require('../elements/move/inputs/LeftParen'),
   RightParen: require('../elements/move/inputs/RightParen'),
   Move: require('../elements/move/Move'),
+  NormalText: require('../elements/move/NormalText'),
 })
 
 module.exports = () => {
@@ -70,7 +71,9 @@ module.exports = () => {
               <Punch fg='#7d9fbd'/>
               <CustomText text="HOLD" y='100' />
             </g>
-        </Input> to Charge <Input> <RightParen /> </Input> </span>`}
+        </Input>
+        <NormalText text="to Charge" />
+        <Input> <RightParen /> </Input> </span>`}
       />
     </div>
   `

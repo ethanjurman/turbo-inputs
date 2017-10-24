@@ -1,5 +1,10 @@
+p_hold ->   input:p:#000:#7d9fbd:HOLD:-100
+toCharge -> text:to charge
+
 special:Hadouken:236.p
 special:Shoryuken:623.p
 special:Tatsumaki Senpukyaku / Air:(air).214.k
 special:Joudan Sokutou Geri:41236.k
-super:Super Art I: Shinkuu-Hadouken:41236.k
+super:Super Art I - Shinkuu-Hadouken:236.236.p
+super:Super Art II - Shin Shoryuken:236.236.p
+super:Super Art III - Denjin Hadouken:236.236.p.(p_hold.toCharge)

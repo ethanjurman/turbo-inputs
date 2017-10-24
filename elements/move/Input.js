@@ -19,7 +19,7 @@ module.exports = (attrs, children) => {
     return child
   })
   return html`
-    <svg xmlns="http://www.w3.org/2000/svg" width="${(totalWidth / 500) * 48}" height="48" viewBox="0 0 ${totalWidth} 500">
+    <svg width="${(totalWidth / 500) * 48}" height="48" viewBox="0 0 ${totalWidth} 500">
       ${newChildren}
     </svg>
   `

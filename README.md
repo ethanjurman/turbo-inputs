@@ -82,4 +82,16 @@ sp -> special:::
 special:Hadouken:236.p
 special:Shoryuken:623.p
 special:Tatsumaki Senpukyaku / Air:(air).214.k
+
+folder structure
+/game/version/character
+i.e.
+./Street Fighter II/
+  Ryu.txt
+  ./Turbo/
+    .default
+    Ryu.txt
+  ./World Warriors/
+    Ryu.txt
+
 ```
