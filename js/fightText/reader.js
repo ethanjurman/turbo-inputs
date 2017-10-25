@@ -1,9 +1,14 @@
 const htmlLoader = require('tram-one').html
 
 const Input = require('../../elements/move/Input')
+const Air = require('../../elements/move/inputs/Air')
 const QC = require('../../elements/move/inputs/QC')
+const HC = require('../../elements/move/inputs/HC')
+const DP = require('../../elements/move/inputs/DP')
 const Punch = require('../../elements/move/inputs/Punch')
 const Kick = require('../../elements/move/inputs/Kick')
+const LeftParen = require('../../elements/move/inputs/LeftParen')
+const RightParen = require('../../elements/move/inputs/RightParen')
 
 const {
   input,
@@ -16,26 +21,44 @@ const evaluateInputs = (logic) => (inputs) => {
   const inputList = inputs.split('.')
   const inputDOM = inputList.map(
     (input, index, array) => {
-      return logic[input](array.slice(0))
+      return logic[input]({})
     })
   return Input(null, inputDOM)
 }
 
-
 const evaluateLine = ({logic, html}, line) => {
-  // line.match(`/->/`) // this match builds logic
-  // line.match(`/^(.+):/`) // this line builds html
-  if (line.trim() === ''){
-    return {logic, html}
+  if (matches = line.trim().match(/(.+\s)->(.*)/)) {
+    console.log('evaluate new rule')
+    logic[matches[1].trim()] = evaluateRule(logic, matches[2].split(':'))
+    return {
+      html,
+      logic: logic
+    }
   }
-  const moveParts = line.trim().split(':')
-  return {
-    html: html.concat(logic[moveParts[0]](
-      moveParts.slice(0), evaluateInputs(logic)
-    )),
-    logic: logic
+  if (line.trim().match(/^(\S+):/)) {
+    console.log('evaluate new move')
+    return {
+      logic,
+      html: html.concat(evaluateMove(logic, line.trim().split(':')))
+    }
   }
+  console.log('no match', line)
+  return {logic, html}
+}
 
+const evaluateMove = (logic, move) => {
+  return logic[move[0]](move.slice(0), evaluateInputs(logic))
+}
+
+const evaluateRule = (logic, move) => {
+  const component = logic[move[1]]
+  const componentArgs = component.args
+  const params = component.args.reduce(
+    (params, argument, index) => {
+      params[argument] = move[index + 2]
+      return params
+    }, {})
+  return component.bind(null, params)
 }
 
 const evaluateFile = (file) => {
@@ -45,17 +68,34 @@ const evaluateFile = (file) => {
 
 const startingLogic = {
   // input: input,
-  236: QC,
-  p: Punch,
-  k: Kick,
-  special: (params, evaluator) => htmlLoader({
+  'air': Air,
+  '236': QC,
+  '214': QC.bind(null, {'flip':true}),
+  '623': DP,
+  '421': DP.bind(null, {'flip':true}),
+  '41236': HC,
+  '63214': HC.bind(null, {'flip':true}),
+  'p': Punch,
+  'k': Kick,
+  '(': LeftParen,
+  ')': RightParen,
+  'special': (params, evaluator) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
       moveName="${params[1]}"
       moveInput=${evaluator(params[2])}
     />
-  `
+  `,
+  'super': (params, evaluator) => htmlLoader({
+    Move: require('../../elements/move/Move')
+  })`
+    <Move
+      typeColor='#d44336'
+      moveName="${params[1]}"
+      moveInput=${evaluator(params[2])}
+    />
+  `,
 }
 
 module.exports = {evaluateFile}

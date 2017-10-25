@@ -1,5 +1,6 @@
-p_hold ->   input:p:#000:#7d9fbd:HOLD:-100
-toCharge -> text:to charge
+p_hold ->   input:p:#000:#7d9fbd:HOLD:1:-100
+toCharge -> input:text:to charge
+level3 ->   move:#fff:Level 3:requires 3 meter
 
 special:Hadouken:236.p
 special:Shoryuken:623.p
