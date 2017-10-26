@@ -28,7 +28,6 @@ const evaluateInputs = (logic) => (inputs) => {
 
 const evaluateLine = ({logic, html}, line) => {
   if (matches = line.trim().match(/(.+\s)->(.*)/)) {
-    console.log('evaluate new rule')
     logic[matches[1].trim()] = evaluateRule(logic, matches[2].split(':'))
     return {
       html,
@@ -36,13 +35,11 @@ const evaluateLine = ({logic, html}, line) => {
     }
   }
   if (line.trim().match(/^(\S+):/)) {
-    console.log('evaluate new move')
     return {
       logic,
       html: html.concat(evaluateMove(logic, line.trim().split(':')))
     }
   }
-  console.log('no match', line)
   return {logic, html}
 }
 
@@ -50,12 +47,11 @@ const evaluateMove = (logic, move) => {
   return logic[move[0]](move.slice(0), evaluateInputs(logic))
 }
 
-const evaluateRule = (logic, move) => {
-  const component = logic[move[1]]
-  const componentArgs = component.args
+const evaluateRule = (logic, inputList) => {
+  const component = logic[inputList[1]]
   const params = component.args.reduce(
     (params, argument, index) => {
-      params[argument] = move[index + 2]
+      params[argument] = inputList[index + 2]
       return params
     }, {})
   return component.bind(null, params)

@@ -51,7 +51,6 @@ module.exports = () => {
       />
 
       <Move
-        typeColor='#d44336'
         moveName="Super Art I : Shinkuu-Hadouken"
         moveInput=${html`<Input> <QC /> <QC /> <Punch /> </Input>`}
       />

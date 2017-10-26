@@ -27,11 +27,15 @@ const darkenColor = (color) => {
 }
 
 const isBright = (color) => {
-  const modColor = shrinkColor(color)
-  if (modColor.match(/(\#[\da-f]{3})/i)) {
-    return modColor.slice(1).split('').reduce((result, color) => {
-      return !!color.match(/[e-f]/i) || result
-    }, false)
+  const modColor = expandColor(color)
+  const [red, green, blue] = modColor.match(/[^#]{2}/g)
+  if (red && green && blue) {
+    const value = (
+      (parseInt(red, 16) * 299) + (parseInt(green, 16) * 587) +
+      (parseInt(blue, 16) * 114)
+    ) / 10000
+    console.log(value, red, green, blue)
+    return value > 20
   }
   return false
 }
@@ -46,7 +50,7 @@ const getStyles = (attrs) => {
       margin: 5px;
     `,
     moveNameStyle: `
-      color: white;
+      color: ${isBright(typeColor) ? 'black' : 'white' };
       font-weight: bolder;
       background: ${darkenColor(typeColor)};
       border-radius: 5px 5px 0px 0px;

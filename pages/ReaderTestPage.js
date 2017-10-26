@@ -7,7 +7,6 @@ const Joiner = (attrs, children) => html`<div> ${children} </div>`
 module.exports = () => {
   const output = evaluateFile(`
     p_hold -> input:p:#000:#7d9fbd:HOLD:1.3:135:0
-    
 
     special:Hadouken:236.p
     special:Shoryuken:623.p
