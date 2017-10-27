@@ -7,6 +7,10 @@ const style = `
   font-weight: bold;
 `
 
-module.exports = ({text}) => html`
+const NormalText = ({text}) => html`
   <span style=${style}> ${text} </span>
 `
+
+NormalText.args = ['text']
+
+module.exports = NormalText

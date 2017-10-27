@@ -1,7 +1,7 @@
 const html = require('tram-one').html()
 const InputTransformWrapper = require('../inputModifiers/InputTransformWrapper')
 
-const HC = (attrs) => html`
+const HC = () => html`
 <g>
   <g transform="translate(-26.73 -549.767)" stroke-linejoin="round">
     <circle r="143.7884" cy="799.7672" cx="276.7315" fill="#bdbdbd" stroke="#747474" stroke-width="12.2008"/>

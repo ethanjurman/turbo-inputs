@@ -5,6 +5,7 @@ const inputsLocation = '../elements/move/inputs'
 const html = Tram.html({
   header: require('../elements/header'),
   Input: require('../elements/move/Input'),
+  Motion: require('../elements/move/inputs/Motion'),
   Air: require('../elements/move/inputs/Air'),
   CustomButton: require('../elements/move/inputs/CustomButton'),
   Arrow: require('../elements/move/inputs/Arrow'),

@@ -2,7 +2,15 @@ const Tram = require('tram-one')
 const htmlLoader = Tram.html
 const getTransformStyle = require('./getTransformStyle')
 
-module.exports = (component, argumentsList) => {
+module.exports = (
+  component,
+  argumentsList = [
+    'flip',
+    'rotation',
+    'x',
+    'y',
+  ]
+) => {
   const html = htmlLoader({
     WrappingComponent: component
   });

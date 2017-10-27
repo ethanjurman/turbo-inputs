@@ -1,6 +1,8 @@
 const htmlLoader = require('tram-one').html
 
 const Input = require('../../elements/move/Input')
+const Arrow = require('../../elements/move/inputs/Arrow')
+const Motion = require('../../elements/move/inputs/Motion')
 const Air = require('../../elements/move/inputs/Air')
 const QC = require('../../elements/move/inputs/QC')
 const HC = require('../../elements/move/inputs/HC')
@@ -27,7 +29,7 @@ const evaluateInputs = (logic) => (inputs) => {
 }
 
 const evaluateLine = ({logic, html}, line) => {
-  if (matches = line.trim().match(/(.+\s)->(.*)/)) {
+  if (matches = line.trim().match(/(.+\s)->\s+?(.*)/)) {
     logic[matches[1].trim()] = evaluateRule(logic, matches[2].split(':'))
     return {
       html,
@@ -48,10 +50,10 @@ const evaluateMove = (logic, move) => {
 }
 
 const evaluateRule = (logic, inputList) => {
-  const component = logic[inputList[1]]
+  const component = logic[inputList[0]]
   const params = component.args.reduce(
     (params, argument, index) => {
-      params[argument] = inputList[index + 2]
+      params[argument] = inputList[index + 1]
       return params
     }, {})
   return component.bind(null, params)
@@ -63,7 +65,6 @@ const evaluateFile = (file) => {
 }
 
 const startingLogic = {
-  // input: input,
   'air': Air,
   '236': QC,
   '214': QC.bind(null, {'flip':true}),
@@ -71,6 +72,15 @@ const startingLogic = {
   '421': DP.bind(null, {'flip':true}),
   '41236': HC,
   '63214': HC.bind(null, {'flip':true}),
+  '6': Arrow,
+  '3': Arrow.bind(null, {rotation: 45}),
+  '2': Arrow.bind(null, {rotation: 90}),
+  '1': Arrow.bind(null, {rotation: 135}),
+  '4': Arrow.bind(null, {rotation: 180}),
+  '7': Arrow.bind(null, {rotation: 225}),
+  '8': Arrow.bind(null, {rotation: 270}),
+  '9': Arrow.bind(null, {rotation: 315}),
+  '5': Motion,
   'p': Punch,
   'k': Kick,
   '(': LeftParen,

@@ -1,7 +1,7 @@
 const html = require('tram-one').html()
 const InputTransformWrapper = require('../inputModifiers/InputTransformWrapper')
 
-const FC = (attrs) => html`
+const FC = () => html`
 <g>
   <g transform="translate(-26.731506,-549.76731)">
     <circle

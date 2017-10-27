@@ -6,8 +6,9 @@ const Joiner = (attrs, children) => html`<div> ${children} </div>`
 
 module.exports = () => {
   const output = evaluateFile(`
-    p_hold -> input:p:#000:#7d9fbd:HOLD:1.3:135:0
+    p_hold -> p:#000:#7d9fbd:HOLD:1.3:135:0
 
+    special:movement:5.6.3.2.1.4.7.8.9
     special:Hadouken:236.p
     special:Shoryuken:623.p
     special:Tatsumaki Senpukyaku / Air:(.air.).214.k

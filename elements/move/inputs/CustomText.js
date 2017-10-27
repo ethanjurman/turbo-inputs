@@ -1,6 +1,6 @@
 const html = require('tram-one').html()
 
-module.exports = ({
+const CustomText = ({
   text,
   font,
   x = 0, y = 0,
@@ -29,3 +29,7 @@ module.exports = ({
     </g>
   `
 }
+
+CustomText.args = ['text', 'font', 'x', 'y', 'stroke', 'blur']
+
+module.exports = CustomText
