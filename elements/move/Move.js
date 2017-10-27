@@ -34,7 +34,6 @@ const isBright = (color) => {
       (parseInt(red, 16) * 299) + (parseInt(green, 16) * 587) +
       (parseInt(blue, 16) * 114)
     ) / 10000
-    console.log(value, red, green, blue)
     return value > 20
   }
   return false

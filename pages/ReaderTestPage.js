@@ -7,6 +7,7 @@ const Joiner = (attrs, children) => html`<div> ${children} </div>`
 module.exports = () => {
   const output = evaluateFile(`
     p_hold -> p:#000:#7d9fbd:HOLD:1.3:135:0
+    to_charge -> text:to charge
 
     special:movement:5.6.3.2.1.4.7.8.9
     special:Hadouken:236.p
@@ -15,7 +16,7 @@ module.exports = () => {
     special:Joudan Sokutou Geri:41236.k
     super:Super Art I - Shinkuu-Hadouken:236.236.p
     super:Super Art II - Shin Shoryuken:236.236.p
-    super:Super Art III - Denjin Hadouken:236.236.p.(.p_hold.)
+    super:Super Art III - Denjin Hadouken:236.236.p.(.p_hold.to_charge.)
   `)
   return Joiner(null, output)
 }

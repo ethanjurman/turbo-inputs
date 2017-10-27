@@ -11,6 +11,9 @@ const Punch = require('../../elements/move/inputs/Punch')
 const Kick = require('../../elements/move/inputs/Kick')
 const LeftParen = require('../../elements/move/inputs/LeftParen')
 const RightParen = require('../../elements/move/inputs/RightParen')
+const NormalText = require('../../elements/move/NormalText')
+const CustomText = require('../../elements/move/inputs/CustomText')
+const CustomButton = require('../../elements/move/inputs/CustomButton')
 
 const {
   input,
@@ -66,6 +69,7 @@ const evaluateFile = (file) => {
 
 const startingLogic = {
   'air': Air,
+  'text': NormalText,
   '236': QC,
   '214': QC.bind(null, {'flip':true}),
   '623': DP,
@@ -83,6 +87,7 @@ const startingLogic = {
   '5': Motion,
   'p': Punch,
   'k': Kick,
+  'cb': CustomButton,
   '(': LeftParen,
   ')': RightParen,
   'special': (params, evaluator) => htmlLoader({
