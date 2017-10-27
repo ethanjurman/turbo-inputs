@@ -1,6 +1,7 @@
 const htmlLoader = require('tram-one').html
 
 const Input = require('../../elements/move/Input')
+const Next = require('../../elements/move/inputs/Next')
 const Arrow = require('../../elements/move/inputs/Arrow')
 const Motion = require('../../elements/move/inputs/Motion')
 const Air = require('../../elements/move/inputs/Air')
@@ -22,13 +23,16 @@ const {
 } = require('./componentTypes')
 
 const evaluateInputs = (logic) => (inputs) => {
-  // 236.p
   const inputList = inputs.split('.')
+  const DOM = []
   const inputDOM = inputList.map(
     (input, index, array) => {
-      return logic[input]({})
+      if (logic[input].args && logic[input].args.length  == 1) {
+        return logic[input]({})
+      }
+      return Input(null, [logic[input]({})])
     })
-  return Input(null, inputDOM)
+  return inputDOM
 }
 
 const evaluateLine = ({logic, html}, line) => {
@@ -59,7 +63,9 @@ const evaluateRule = (logic, inputList) => {
       params[argument] = inputList[index + 1]
       return params
     }, {})
-  return component.bind(null, params)
+  const newComponent = component.bind(null, params)
+  newComponent.args = logic[inputList[0]].args
+  return newComponent
 }
 
 const evaluateFile = (file) => {
@@ -70,6 +76,7 @@ const evaluateFile = (file) => {
 const startingLogic = {
   'air': Air,
   'text': NormalText,
+  '>': Next,
   '236': QC,
   '214': QC.bind(null, {'flip':true}),
   '623': DP,
