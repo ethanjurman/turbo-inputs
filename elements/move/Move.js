@@ -1,5 +1,7 @@
 const html = require('tram-one').html()
 
+const NOTE_REG = /(.+)(\#[0-9a-f]{3,6})/i
+
 const expandColor = (color) => {
   if (color.length == 4 && color.match(/(\#[\da-f]{3})/i)) {
     return color.slice(1).split('').reduce((endColor, color) => endColor += `${color}${color}`,'#')
@@ -39,39 +41,62 @@ const isBright = (color) => {
   return false
 }
 
-const getStyles = (attrs) => {
-  const {typeColor = '#4caf50'} = attrs
+const getStyles = (moveColor = '#4caf50') => {
   return {
     moveStyle: `
+      color: ${isBright(moveColor) ? 'black' : 'white' };
       border-radius: 10px;
-      background: ${typeColor};
+      background: ${moveColor};
       padding: 5px;
       margin: 5px;
     `,
     moveNameStyle: `
-      color: ${isBright(typeColor) ? 'black' : 'white' };
       font-weight: bolder;
-      background: ${darkenColor(typeColor)};
-      border-radius: 5px 5px 0px 0px;
+      background: ${darkenColor(darkenColor(moveColor))};
+      border-radius: 10px 10px 0px 0px;
       padding: 0px 5px;
     `,
-    moveInputStyle: ``,
-    moveNotesStyle: ``,
-    typeNotesStyle: ``,
+    moveInputStyle: `
+      line-height: 0px;
+    `,
+    moveNotesStyle: `
+      padding: 0px 5px;
+    `,
+    moveTagsStyle: (color) => `
+      color: ${isBright(color) ? 'black' : 'white' };
+      border: 2px ${color} solid;
+      border-radius: 5px;
+      padding: 0px 2px;
+      background: ${darkenColor(color)};
+      float: right;
+      margin: 4px;
+    `,
   }
 }
 
-module.exports = (attrs) => {
-  const {moveName, moveInput, moveNotes, typeColor, typeNotes} = attrs
-  const {moveStyle, moveNameStyle, moveInputStyle, moveNotesStyle, typeNotesStyle} = getStyles(attrs)
+const renderNotes = (moveTags, moveTagsStyle) => {
+  const notes = typeof moveTags === 'string' ? moveTags.trim().split('|').reverse() : moveTags
+  return notes.map(note => {
+    const [str, noteText = note, noteColor = '#66c'] = note.match(NOTE_REG) || []
+    return html`<span style=${moveTagsStyle(noteColor)}> ${noteText} </span>`
+  })
+}
+
+const Move = (attrs) => {
+  const {moveName, moveInput, moveNotes, moveColor, moveTags} = attrs
+  const {moveStyle, moveNameStyle, moveInputStyle, moveNotesStyle, moveTagsStyle} = getStyles(moveColor)
   return html`
     <div style=${moveStyle} ${attrs}>
       <div style=${moveNameStyle}>
         ${moveName}
-        <span style=${typeNotesStyle}> ${typeNotes} </span>
+        ${moveTags ? renderNotes(moveTags, moveTagsStyle) : ''}
       </div>
       <div style=${moveInputStyle}> ${moveInput} </div>
       <div style=${moveNotesStyle}> ${moveNotes} </div>
     </div>
   `
 }
+
+Move.args = ['moveColor']
+
+module.exports = Move

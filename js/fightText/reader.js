@@ -1,6 +1,9 @@
 const htmlLoader = require('tram-one').html
 
 const Input = require('../../elements/move/Input')
+const Move = require('../../elements/move/Move')
+const Tag = require('../../elements/move/Tag')
+const NormalText = require('../../elements/move/NormalText')
 const Next = require('../../elements/move/inputs/Next')
 const Arrow = require('../../elements/move/inputs/Arrow')
 const Motion = require('../../elements/move/inputs/Motion')
@@ -12,7 +15,6 @@ const Punch = require('../../elements/move/inputs/Punch')
 const Kick = require('../../elements/move/inputs/Kick')
 const LeftParen = require('../../elements/move/inputs/LeftParen')
 const RightParen = require('../../elements/move/inputs/RightParen')
-const NormalText = require('../../elements/move/NormalText')
 const CustomText = require('../../elements/move/inputs/CustomText')
 const CustomButton = require('../../elements/move/inputs/CustomButton')
 
@@ -23,16 +25,21 @@ const {
 } = require('./componentTypes')
 
 const evaluateInputs = (logic) => (inputs) => {
+  if (!inputs) {
+    return '';
+  }
   const inputList = inputs.split('.')
-  const DOM = []
-  const inputDOM = inputList.map(
+  return inputList.map(
     (input, index, array) => {
       if (logic[input].args && logic[input].args.length  == 1) {
+        // is text node
+        return logic[input]({})
+      }
+      if (logic[input].name.match(/Tag/)) {
         return logic[input]({})
       }
       return Input(null, [logic[input]({})])
     })
-  return inputDOM
 }
 
 const evaluateLine = ({logic, html}, line) => {
@@ -58,6 +65,9 @@ const evaluateMove = (logic, move) => {
 
 const evaluateRule = (logic, inputList) => {
   const component = logic[inputList[0]]
+  if (component.name === 'move') {
+    return component.apply(null, [inputList.slice(0)])
+  }
   const params = component.args.reduce(
     (params, argument, index) => {
       params[argument] = inputList[index + 1]
@@ -97,23 +107,39 @@ const startingLogic = {
   'cb': CustomButton,
   '(': LeftParen,
   ')': RightParen,
+  'move': (typeParams) => (params, evaluator) => htmlLoader({
+    Move: require('../../elements/move/Move')
+  })`
+    <Move
+      moveColor=${typeParams[1]}
+      moveName="${params[1]}"
+      moveInput=${evaluator(params[2])}
+      moveNotes=${params[4] || ''}
+      moveTags=${evaluator(params[3] || '')}
+    />
+  `,
   'special': (params, evaluator) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
       moveName="${params[1]}"
       moveInput=${evaluator(params[2])}
+      moveNotes=${params[4] || ''}
+      moveTags=${evaluator(params[3] || '')}
     />
   `,
   'super': (params, evaluator) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
-      typeColor='#d44336'
+      moveColor='#d44336'
       moveName="${params[1]}"
       moveInput=${evaluator(params[2])}
+      moveNotes=${params[4] || ''}
+      moveTags=${evaluator(params[3] || '')}
     />
   `,
+  'tag': Tag
 }
 
 module.exports = {evaluateFile}

@@ -6,10 +6,18 @@ const Joiner = (attrs, children) => html`<div> ${children} </div>`
 
 module.exports = () => {
   const output = evaluateFile(`
+    xism -> tag:X-ISM:#a44
+    zism -> tag:Z-ISM:#4a4
+    vism -> tag:V-ISM:#44a
     p_hold -> p:#000:#7d9fbd:HOLD:1.3:135:0
+    hp -> p:#ff5722:#fff:HP
     to_charge -> text:to charge
+    command -> move:#bbb
+    level3Super -> move:#d00
 
-    special:Hadouken:236.p
+    level3Super:Neo Deadly Rave:p.p.p:xism.zism:Tap [p] for more damage
+    command:Throw:6.hp:xism.zism
+    special:Hadouken:236.p:xism.zism.vism
     special:Shoryuken:623.p
     special:Tatsumaki Senpukyaku / Air:(.air.).214.k
     special:Joudan Sokutou Geri:41236.k
