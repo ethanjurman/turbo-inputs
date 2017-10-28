@@ -1,5 +1,12 @@
 const htmlLoader = require('tram-one').html
 
+const NoteInputJoiner = (attrs, children) => htmlLoader()`
+  <div style=${attrs.style}> ${children.map((child) => {
+    child.setAttribute('width', '1.5em')
+    child.setAttribute('height', '1.5em')
+    return child
+  })} </div>
+`
 const Input = require('../../elements/move/Input')
 const Move = require('../../elements/move/Move')
 const Tag = require('../../elements/move/Tag')
@@ -42,6 +49,16 @@ const evaluateInputs = (logic) => (inputs) => {
     })
 }
 
+const evaluateNotes = (logic) => (note) => {
+  const style = `
+    display: inline-block;
+    transform: translateY(0.4em);
+  `
+  return note.split(/[\[\]]/).map((text, index) => {
+    return index % 2 ? NoteInputJoiner({style}, evaluateInputs(logic)(text)) : text
+  })
+}
+
 const evaluateLine = ({logic, html}, line) => {
   if (matches = line.trim().match(/(.+\s)->\s+?(.*)/)) {
     logic[matches[1].trim()] = evaluateRule(logic, matches[2].split(':'))
@@ -60,7 +77,11 @@ const evaluateLine = ({logic, html}, line) => {
 }
 
 const evaluateMove = (logic, move) => {
-  return logic[move[0]](move.slice(0), evaluateInputs(logic))
+  return logic[move[0]](
+    move.slice(0),
+    evaluateInputs(logic),
+    evaluateNotes(logic)
+  )
 }
 
 const evaluateRule = (logic, inputList) => {
@@ -107,36 +128,36 @@ const startingLogic = {
   'cb': CustomButton,
   '(': LeftParen,
   ')': RightParen,
-  'move': (typeParams) => (params, evaluator) => htmlLoader({
+  'move': (typeParams) => (params, evaluateInputs, evaluateNotes) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
       moveColor=${typeParams[1]}
       moveName="${params[1]}"
-      moveInput=${evaluator(params[2])}
-      moveNotes=${params[4] || ''}
-      moveTags=${evaluator(params[3] || '')}
+      moveInput=${evaluateInputs(params[2])}
+      moveNotes=${evaluateNotes(params[4] || '')}
+      moveTags=${evaluateInputs(params[3] || '')}
     />
   `,
-  'special': (params, evaluator) => htmlLoader({
+  'special': (params, evaluateInputs, evaluateNotes) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
       moveName="${params[1]}"
-      moveInput=${evaluator(params[2])}
+      moveInput=${evaluateInputs(params[2])}
       moveNotes=${params[4] || ''}
-      moveTags=${evaluator(params[3] || '')}
+      moveTags=${evaluateInputs(params[3] || '')}
     />
   `,
-  'super': (params, evaluator) => htmlLoader({
+  'super': (params, evaluateInputs, evaluateNotes) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
       moveColor='#d44336'
       moveName="${params[1]}"
-      moveInput=${evaluator(params[2])}
+      moveInput=${evaluateInputs(params[2])}
       moveNotes=${params[4] || ''}
-      moveTags=${evaluator(params[3] || '')}
+      moveTags=${evaluateInputs(params[3] || '')}
     />
   `,
   'tag': Tag

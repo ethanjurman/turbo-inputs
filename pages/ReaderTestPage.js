@@ -15,7 +15,7 @@ module.exports = () => {
     command -> move:#bbb
     level3Super -> move:#d00
 
-    level3Super:Neo Deadly Rave:p.p.p:xism.zism:Tap [p] for more damage
+    level3Super:Neo Deadly Rave:p.p.p:xism.zism:Hold [4.p.p] for more damage
     command:Throw:6.hp:xism.zism
     special:Hadouken:236.p:xism.zism.vism
     special:Shoryuken:623.p

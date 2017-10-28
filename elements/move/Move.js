@@ -74,7 +74,7 @@ const getStyles = (moveColor = '#4caf50') => {
   }
 }
 
-const renderNotes = (moveTags, moveTagsStyle) => {
+const renderTags = (moveTags, moveTagsStyle) => {
   const notes = typeof moveTags === 'string' ? moveTags.trim().split('|').reverse() : moveTags
   return notes.map(note => {
     const [str, noteText = note, noteColor = '#66c'] = note.match(NOTE_REG) || []
@@ -89,7 +89,7 @@ const Move = (attrs) => {
     <div style=${moveStyle} ${attrs}>
       <div style=${moveNameStyle}>
         ${moveName}
-        ${moveTags ? renderNotes(moveTags, moveTagsStyle) : ''}
+        ${moveTags ? renderTags(moveTags, moveTagsStyle) : ''}
       </div>
       <div style=${moveInputStyle}> ${moveInput} </div>
       <div style=${moveNotesStyle}> ${moveNotes} </div>
