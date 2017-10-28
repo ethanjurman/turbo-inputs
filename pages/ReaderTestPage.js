@@ -12,11 +12,9 @@ module.exports = () => {
     p_hold -> p:#000:#7d9fbd:HOLD:1.3:135:0
     hp -> p:#ff5722:#fff:HP
     to_charge -> text:to charge
-    command -> move:#bbb
     level3Super -> move:#d00
 
-    level3Super:Neo Deadly Rave:p.p.p:xism.zism:Hold [4.p.p] for more damage
-    command:Throw:6.hp:xism.zism
+    command:Throw:6.hp::When close to opponent
     special:Hadouken:236.p:xism.zism.vism
     special:Shoryuken:623.p
     special:Tatsumaki Senpukyaku / Air:(.air.).214.k

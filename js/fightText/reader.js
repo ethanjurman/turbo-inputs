@@ -139,13 +139,24 @@ const startingLogic = {
       moveTags=${evaluateInputs(params[3] || '')}
     />
   `,
+  'command': (params, evaluateInputs, evaluateNotes) => htmlLoader({
+    Move: require('../../elements/move/Move')
+  })`
+    <Move
+      moveColor='#aaa'
+      moveName="${params[1]}"
+      moveInput=${evaluateInputs(params[2])}
+      moveNotes=${evaluateNotes(params[4] || '')}
+      moveTags=${evaluateInputs(params[3] || '')}
+    />
+  `,
   'special': (params, evaluateInputs, evaluateNotes) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
       moveName="${params[1]}"
       moveInput=${evaluateInputs(params[2])}
-      moveNotes=${params[4] || ''}
+      moveNotes=${evaluateNotes(params[4] || '')}
       moveTags=${evaluateInputs(params[3] || '')}
     />
   `,
@@ -156,7 +167,7 @@ const startingLogic = {
       moveColor='#d44336'
       moveName="${params[1]}"
       moveInput=${evaluateInputs(params[2])}
-      moveNotes=${params[4] || ''}
+      moveNotes=${evaluateNotes(params[4] || '')}
       moveTags=${evaluateInputs(params[3] || '')}
     />
   `,
