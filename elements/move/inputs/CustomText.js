@@ -30,6 +30,6 @@ const CustomText = ({
   `
 }
 
-CustomText.args = ['text', 'font', 'x', 'y', 'stroke', 'blur']
+CustomText.args = ['text', 'blur', 'font', 'x', 'y', 'stroke']
 
 module.exports = CustomText

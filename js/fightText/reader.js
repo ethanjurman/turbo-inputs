@@ -59,21 +59,36 @@ const evaluateNotes = (logic) => (note) => {
   })
 }
 
-const evaluateLine = ({logic, html}, line) => {
+const evaluateLine = ({logic, html, characters, current}, line) => {
+  if (matches = line.trim().match(/^character:(.+)/)) {
+    characters[matches[1].trim()] = []
+    return {
+      html,
+      logic,
+      current: matches[1].trim(),
+      characters: characters
+    }
+  }
   if (matches = line.trim().match(/(.+\s)->\s+?(.*)/)) {
     logic[matches[1].trim()] = evaluateRule(logic, matches[2].split(':'))
     return {
       html,
-      logic: logic
+      logic: logic,
+      characters,
+      current,
     }
   }
   if (line.trim().match(/^(\S+):/)) {
+    const move = evaluateMove(logic, line.trim().split(':'))
+    characters[current].push(move)
     return {
+      html: html.concat(move),
       logic,
-      html: html.concat(evaluateMove(logic, line.trim().split(':')))
+      characters: characters,
+      current,
     }
   }
-  return {logic, html}
+  return {logic, html, characters, current}
 }
 
 const evaluateMove = (logic, move) => {
@@ -100,8 +115,12 @@ const evaluateRule = (logic, inputList) => {
 }
 
 const evaluateFile = (file) => {
-  const {html} = file.split('\n').reduce(evaluateLine, {logic: startingLogic, html:[]})
-  return html;
+  const result = file.split('\n').reduce(
+    evaluateLine,
+    {logic: startingLogic, html:[], characters:{}, current:''}
+  )
+  console.log(result)
+  return result.html;
 }
 
 const startingLogic = {
@@ -126,6 +145,7 @@ const startingLogic = {
   'p': Punch,
   'k': Kick,
   'cb': CustomButton,
+  'ct': CustomText,
   '(': LeftParen,
   ')': RightParen,
   'move': (typeParams) => (params, evaluateInputs, evaluateNotes) => htmlLoader({
