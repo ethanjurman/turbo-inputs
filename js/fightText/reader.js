@@ -7,6 +7,7 @@ const NoteInputJoiner = (attrs, children) => htmlLoader()`
     return child
   })} </div>
 `
+const Character = require('../../elements/Character')
 const Input = require('../../elements/move/Input')
 const Move = require('../../elements/move/Move')
 const Tag = require('../../elements/move/Tag')
@@ -61,11 +62,13 @@ const evaluateNotes = (logic) => (note) => {
 
 const evaluateLine = ({logic, html, characters, current}, line) => {
   if (matches = line.trim().match(/^character:(.+)/)) {
-    characters[matches[1].trim()] = []
+    const characterName = matches[1].trim()
+    const characterHtml = Character({characterName})
+    characters[characterName] = [characterHtml]
     return {
-      html,
+      html: html.concat(characterHtml),
       logic,
-      current: matches[1].trim(),
+      current: characterName,
       characters: characters
     }
   }
@@ -120,7 +123,7 @@ const evaluateFile = (file) => {
     {logic: startingLogic, html:[], characters:{}, current:''}
   )
   console.log(result)
-  return result.html;
+  return result;
 }
 
 const startingLogic = {
