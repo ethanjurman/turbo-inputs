@@ -1,7 +1,5 @@
 const Tram = require('tram-one')
 
-const inputsLocation = '../elements/move/inputs'
-
 const html = Tram.html()
 
 module.exports = () => {

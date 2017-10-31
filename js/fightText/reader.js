@@ -123,7 +123,6 @@ const evaluateFile = (file) => {
     evaluateLine,
     {logic: startingLogic, html:[], characters:{}, current:''}
   )
-  console.log(result)
   return result;
 }
 
