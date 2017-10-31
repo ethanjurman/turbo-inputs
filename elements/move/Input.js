@@ -1,6 +1,6 @@
 const html = require('tram-one').html()
 
-translateXMatch = /translateX\((-?\d+)px\)/
+const translateXMatch = /translateX\((-?\d+)px\)/
 
 const getTranslateX = (child) => {
   return +(child.style.transform.match(translateXMatch) || [0,0])[1]

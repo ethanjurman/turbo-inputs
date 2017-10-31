@@ -61,6 +61,7 @@ const evaluateNotes = (logic) => (note) => {
 }
 
 const evaluateLine = ({logic, html, characters, current}, line) => {
+  let matches
   if (matches = line.trim().match(/^character:(.+)/)) {
     const characterName = matches[1].trim()
     const characterHtml = Character({characterName})
