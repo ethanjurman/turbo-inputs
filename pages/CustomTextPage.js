@@ -29,11 +29,16 @@ module.exports = (store, actions) => {
       <div style=${leftStyle}>
         <InputFighterText
           text=${store.testFighterText}
-          updateTestText=${updateText(actions.updateTestText)}
+          errorLine=${store.errorLine}
+          updateTestText=${actions.updateTestText}
         />
       </div>
       <div style=${rightStyle}>
-        <OutputFighterText text=${store.testFighterText} />
+        <OutputFighterText
+          text=${store.testFighterText}
+          errorLine=${store.errorLine}
+          updateErrorLine=${actions.updateErrorLine}
+        />
       </div>
     </div>
   `

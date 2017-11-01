@@ -1,5 +1,6 @@
 const Tram = require('tram-one')
 const testFighterText = require('./js/actions/testFighterText')
+const errorLine = require('./js/actions/errorLine')
 
 const app = new Tram()
 app.addRoute('/', require('./pages/home'))
@@ -8,5 +9,5 @@ app.addRoute('/testPage', require('./pages/testPage'))
 app.addRoute('/testPageRyu', require('./pages/testPageRyu'))
 app.addRoute('/readerTestPage', require('./pages/ReaderTestPage'))
 app.addRoute('/customTextPage', require('./pages/CustomTextPage'))
-app.addActions({testFighterText})
+app.addActions({testFighterText, errorLine})
 app.start('.main')

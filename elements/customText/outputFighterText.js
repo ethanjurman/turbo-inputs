@@ -4,10 +4,15 @@ const html = require('tram-one').html({
 const {evaluateFile} = require('../../js/fightText/reader')
 const Joiner = (attrs, children) => html`<div> ${children} </div>`
 
-module.exports = ({text}) => {
+module.exports = ({text, updateErrorLine, errorLine}) => {
   const output = evaluateFile(`${text}`)
-  const moveList = Joiner(null, output.html)
-  const characters = Object.keys(output.characters)
+  if (output.error && errorLine != output.error) {
+    updateErrorLine(output.error)
+  }
+  if (typeof output.error == 'undefined' && errorLine != 'null' ) {
+    updateErrorLine('null')
+  }
+  const moveList = Joiner(null, output.html || [])
   return html`
     <div>
       ${moveList}

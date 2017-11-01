@@ -60,39 +60,45 @@ const evaluateNotes = (logic) => (note) => {
   })
 }
 
-const evaluateLine = ({logic, html, characters, current}, line) => {
+const evaluateLine = ({logic, html, characters, current}, line, lineNum) => {
   let matches
-  if (matches = line.trim().match(/^character:(.+)/)) {
-    const characterName = matches[1].trim()
-    const characterHtml = Character({characterName})
-    characters[characterName] = [characterHtml]
-    return {
-      html: html.concat(characterHtml),
-      logic,
-      current: characterName,
-      characters: characters
+  try {
+    if (matches = line.trim().match(/^character:(.+)/)) {
+      const characterName = matches[1].trim()
+      const characterHtml = Character({characterName})
+      characters[characterName] = [characterHtml]
+      return {
+        html: html.concat(characterHtml),
+        logic,
+        current: characterName,
+        characters: characters
+      }
     }
-  }
-  if (matches = line.trim().match(/(.+\s)->\s+?(.*)/)) {
-    logic[matches[1].trim()] = evaluateRule(logic, matches[2].split(':'))
-    return {
-      html,
-      logic: logic,
-      characters,
-      current,
+    if (matches = line.trim().match(/(.+\s)->\s+?(.*)/)) {
+      const newRule = {
+        [matches[1].trim()]: evaluateRule(logic, matches[2].split(':'))
+      }
+      return {
+        html,
+        logic: Object.assign({}, newRule, logic),
+        characters,
+        current,
+      }
     }
-  }
-  if (line.trim().match(/^(\S+):/)) {
-    const move = evaluateMove(logic, line.trim().split(':'))
-    characters[current].push(move)
-    return {
-      html: html.concat(move),
-      logic,
-      characters: characters,
-      current,
+    if (line.trim().match(/^(\S+):/)) {
+      const move = evaluateMove(logic, line.trim().split(':'))
+      characters[current].push(move)
+      return {
+        html: html.concat(move),
+        logic,
+        characters: characters,
+        current,
+      }
     }
+    return {logic, html, characters, current}
+  } catch (error) {
+    return {error: `${lineNum}`, logic, html, characters, current}
   }
-  return {logic, html, characters, current}
 }
 
 const evaluateMove = (logic, move) => {
@@ -151,6 +157,7 @@ const startingLogic = {
   'ct': CustomText,
   '(': LeftParen,
   ')': RightParen,
+  'tag': Tag,
   'move': (typeParams) => (params, evaluateInputs, evaluateNotes) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
@@ -194,7 +201,6 @@ const startingLogic = {
       moveTags=${evaluateInputs(params[3] || '')}
     />
   `,
-  'tag': Tag
 }
 
 module.exports = {evaluateFile}

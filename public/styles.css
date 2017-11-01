@@ -3,6 +3,6 @@ html * {
 }
 
 svg * {
-  font-family:'Impact Condensed';
+  font-family:'Anton', sans-serif;
   color: inherit;
 }
