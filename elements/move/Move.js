@@ -56,9 +56,7 @@ const getStyles = (moveColor = '#4caf50') => {
       border-radius: 10px 10px 0px 0px;
       padding: 0px 5px;
     `,
-    moveInputStyle: `
-      line-height: 0px;
-    `,
+    moveInputStyle: ``,
     moveNotesStyle: `
       padding: 0px 5px;
     `,

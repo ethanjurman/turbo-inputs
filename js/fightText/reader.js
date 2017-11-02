@@ -60,7 +60,7 @@ const evaluateNotes = (logic) => (note) => {
   })
 }
 
-const evaluateLine = ({logic, html, characters, current}, line, lineNum) => {
+const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum) => {
   let matches
   try {
     if (matches = line.trim().match(/^character:(.+)/)) {
@@ -69,9 +69,10 @@ const evaluateLine = ({logic, html, characters, current}, line, lineNum) => {
       characters[characterName] = [characterHtml]
       return {
         html: html.concat(characterHtml),
-        logic,
         current: characterName,
-        characters: characters
+        logic,
+        characters,
+        errors,
       }
     }
     if (matches = line.trim().match(/(.+\s)->\s+?(.*)/)) {
@@ -83,6 +84,7 @@ const evaluateLine = ({logic, html, characters, current}, line, lineNum) => {
         logic: Object.assign({}, newRule, logic),
         characters,
         current,
+        errors,
       }
     }
     if (line.trim().match(/^(\S+):/)) {
@@ -91,13 +93,14 @@ const evaluateLine = ({logic, html, characters, current}, line, lineNum) => {
       return {
         html: html.concat(move),
         logic,
-        characters: characters,
+        characters,
         current,
+        errors,
       }
     }
-    return {logic, html, characters, current}
+    return {logic, html, characters, current, errors}
   } catch (error) {
-    return {error: `${lineNum}`, logic, html, characters, current}
+    return {errors: [lineNum, ...errors], logic, html, characters, current}
   }
 }
 
@@ -127,7 +130,7 @@ const evaluateRule = (logic, inputList) => {
 const evaluateFile = (file) => {
   const result = file.split('\n').reduce(
     evaluateLine,
-    {logic: startingLogic, html:[], characters:{}, current:''}
+    {logic: startingLogic, html:[], characters:{}, current:'', errors: []}
   )
   return result;
 }

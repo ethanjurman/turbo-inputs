@@ -1,14 +1,18 @@
 const html = require('tram-one').html()
 
 const style = `
+  line-height: 48px;
   font-size: 20px;
-  transform: translateX(5px) translateY(-16px);
+  transform: translateX(5px);
   display: inline-block;
   font-weight: bold;
+  padding-right: 10px;
+  padding-top: 5px;
+  vertical-align: top;
 `
 
 const NormalText = ({text}) => html`
-  <span style=${style}> ${text} </span>
+  <div style=${style}> ${text} </div>
 `
 
 NormalText.args = ['text']

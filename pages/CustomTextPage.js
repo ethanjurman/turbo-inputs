@@ -16,27 +16,24 @@ const rightStyle = `
   width:calc(50% - 10px);
 `
 
-const updateText = (updateFunction) => (evt) => {
-  updateFunction(evt.target.value)
-}
-
 module.exports = (store, actions) => {
   return html({
-    InputFighterText: require('../elements/customText/inputFighterText'),
-    OutputFighterText: require('../elements/customText/outputFighterText')
+    InputFighterText: require('../elements/customText/InputFighterText'),
+    OutputFighterText: require('../elements/customText/OutputFighterText'),
+    ErrorLinesMarker: require('../elements/customText/ErrorLinesMarker'),
   })`
     <div style=${wrappingStyle}>
       <div style=${leftStyle}>
+        <ErrorLinesMarker errorLines=${store.errorLines} />
         <InputFighterText
           text=${store.testFighterText}
-          errorLine=${store.errorLine}
           updateTestText=${actions.updateTestText}
         />
       </div>
       <div style=${rightStyle}>
         <OutputFighterText
           text=${store.testFighterText}
-          errorLine=${store.errorLine}
+          errorLines=${store.errorLines}
           updateErrorLine=${actions.updateErrorLine}
         />
       </div>
