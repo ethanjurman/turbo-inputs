@@ -44,21 +44,23 @@ Characters can be added by the syntax below
 ```
 character:Ryu
 ```
-Once you put a character line, all moved below it will belong to that character (until you write a new character or version line)
+Once you put a character line, all moves below it will belong to that character (until you write a new character or version line).
 
 ## Moves
 A move is constructed of 5 parts
 ```
 special:Hadouken:236.p:projectile:speed changes based on level of [p]
 ```
-The parts are as follows: move type, move name, move input, tags, and notes. Notes takes in anything, and if you want to reference an input, place it in square brackets `[ ]` to have it display correctly. You can read more about the other parameters in their respective sections. All parts are optional.
+The parts are as follows: move type, move **name**, move **input**, **tags**, and **notes**. Notes takes in anything, and if you want to reference an input, place it in square brackets `[ ]` to have it display correctly. You can read more about the other parameters in their respective sections. All parts are optional.
 
 ### Defining move types
 You can define your own move type with the syntax below
 ```
-command -> move:#bbb
+fatality -> move:#422
 ```
-Where `#bbb` is the color you want to use for the move. As with all colors, 3 or 6 digit hexadecimal is accepted. The text inside the move is automatically adjusted to be black or white depending on this color.
+Where `#422` is the color you want to use for the move. As with all colors, 3 or 6 digit hexadecimal is accepted. The text inside the move is automatically adjusted to be black or white depending on this color.
+
+`command`, `special`, and `super` are already defined for convenience.
 
 ## Inputs
 As mentioned above, a string of inputs can be expressed with dots between them.
@@ -89,7 +91,7 @@ p_hold -> p:#000:#7d9fbd:HOLD:1.3:135:0
 ```
 
 ## Tags
-Tags are simple ways to indicate that the move has special properties. Things like `Multi-hit`, `Projectile`, `Anti-air` might be good tags. Games like Alpha 3 has certain moves that fall under `X-ISM`, `A-ISM`, and `V-ISM`- and games like Killer Instinct has moves that fall into multiple categories like `Enders`, `Starters`- these are perfect examples of where tags can be useful to categories moves.
+Tags are simple ways to indicate that the move has special properties. Things like `Multi-hit`, `Projectile`, `Anti-air` might be good tags. Games like Alpha 3 has certain moves that fall under `X-ISM`, `A-ISM`, and `V-ISM`- and games like Killer Instinct has moves that fall into multiple categories like `Enders`, `Starters`- these are perfect examples of where tags can be useful to categorize moves.
 
 A tag is built with just 2 parameters. Below is an example of defining and using the `*-ISM` tags that exist in games like alpha 3
 ```
