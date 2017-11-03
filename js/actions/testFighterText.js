@@ -1,7 +1,5 @@
 module.exports = {
-  init: () => `t -> text:WHAT
-character:RYU
-special:Hadouken:t
-special:Hadouken2:t.p`,
+  init: () => `character:RYU
+special:Hadouken:236.p`,
   updateTestText: (text, newText) => newText
 }

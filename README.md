@@ -1,5 +1,7 @@
 # Turbo Inputs
-Turbo Inputs is your one stop shop of all your fighting game move lists.
+Thank you for reading the readme! You're a cool person!
+
+<details> <summary> Only click here, if you wanna see the developer stuff </summary>
 
 ## Developement Instructions
 1. In the root directory, run `npm install` to install all the project dependencies
@@ -12,11 +14,13 @@ Below are a list of commands used for developement. The logic for all the comman
 - `npm run build` - builds a final distributable using browserify
 - `npm test` - runs tests in jasmine
 
-## Turbo Inputs Language
+</details>
+
+# Fighting Input Language
 So if there is a game which doesn't yet exist on turbo inputs, I've created a language that will make it easy (hopefully) to add your own lists
 
 ## General syntax
-The fighting input language has two types of syntaxs depending on what you are writing.
+The fighting input language has two types of syntaxes depending on what you are writing.
 
 Dot delimitation is used for inputs and tags. Any time you need to define multiple inputs or tags, simply put a `.` with no space. For example if I wanted to place a punch input after a quarter circle forward, I could write that as `236.p` where `236` is the quarter circle motion, and `p` is shorthand for punch.
 
@@ -63,16 +67,21 @@ Defined by default are the following, along with their parameters for making new
 
 Input | keyword | arguments
 --- | --- | ---
-Punch | `p` | background color, foreground color, overlay text, text size, horizontal text offset, vertical text offset
-Kick | `k` | background color, foreground color, overlay text, text size, horizontal text offset, vertical text offset
-Custom button | `cb` | button color, text, text size, horizontal text offset, vertical text offset
-Custom text | `ct` | text, shadow, size, horizontal offset, vertical offset, stroke width
-Air | `air` | no extra parameters
-Next | `>` | no extra parameters
-Left paren | `(` | flip
-Right paren | `)` | no extra parameters
-Arrow | `6` | flip, rotation
-Motion | `236` | flip, rotation
+![./public/svgs/punch.svg](./public/svgs/punch.svg) | `p` | background color, foreground color, overlay text, text size, horizontal text offset, vertical text offset
+![./public/svgs/kick.svg](./public/svgs/kick.svg) | `k` | background color, foreground color, overlay text, text size, horizontal text offset, vertical text offset
+![./public/svgs/custom_button.svg](./public/svgs/custom_button.svg) | `cb` | button color, text, text size, horizontal text offset, vertical text offset
+![./public/svgs/custom_text.svg](./public/svgs/custom_text.svg) | `ct` | text, shadow, size, horizontal offset, vertical offset, stroke width
+![./public/svgs/air.svg](./public/svgs/air.svg) | `air` | no extra parameters
+![./public/svgs/next.svg](./public/svgs/next.svg) | `>` | no extra parameters
+![./public/svgs/left_bracket.svg](./public/svgs/left_bracket.svg) | `(` | flip
+![./public/svgs/right_bracket.svg](./public/svgs/right_bracket.svg) | `)` | no extra parameters
+![./public/svgs/arrow.svg](./public/svgs/arrow.svg) | `6` | flip, rotation |
+![./public/svgs/dp.svg](./public/svgs/dp.svg) | `623` | flip, rotation
+![./public/svgs/qc.svg](./public/svgs/qc.svg) | `236` | flip, rotation
+![./public/svgs/hc.svg](./public/svgs/hc.svg) | `41236` | flip, rotation
+![./public/svgs/fc.svg](./public/svgs/fc.svg) | `63214789` | flip, rotation
+
+You can use numbers `1` through `9` to express different arrows (they correlate to the numpad, where 6 is forward and 4 is backwards). Also the motion inputs (quarter circle forward, half circle forward, etc...) have mappings to their flipped version by typing the numbers for the backwards version.
 
 So if you needed to create a hold punch button, you could do so by this syntax
 ```
@@ -80,24 +89,13 @@ p_hold -> p:#000:#7d9fbd:HOLD:1.3:135:0
 ```
 
 ## Tags
-Tags are simple
+Tags are simple ways to indicate that the move has special properties. Things like `Multi-hit`, `Projectile`, `Anti-air` might be good tags. Games like Alpha 3 has certain moves that fall under `X-ISM`, `A-ISM`, and `V-ISM`- and games like Killer Instinct has moves that fall into multiple categories like `Enders`, `Starters`- these are perfect examples of where tags can be useful to categories moves.
 
-hp -> p:#ff5722:#fff:HP
-to_charge -> text:to charge
-
-character:RYU
-special:Hadouken:236.p
-special:Shoryuken:623.p
-special:Tatsumaki Senpukyaku / Air:(.air.).214.k
-special:Joudan Sokutou Geri:41236.k
-super:Super Art I - Shinkuu-Hadouken:236.236.p
-super:Super Art II - Shin Shoryuken:236.236.p
-super:Super Art III - Denjin Hadouken:236.236.p.(.p_hold.to_charge.)
-
-character:KEN
-special:Hadouken:236.p
-special:Shoryuken:623.p
-special:Tatsumaki Senpukyaku / Air:(.air.).214.k
-super:Super Art I - Shoryureppa:236.236.p
-super:Super Art II - Shinryuken:236.236.k::Tap [k]
-super:Super Art III - Shippu Jinraikyaku:236.236.k
+A tag is built with just 2 parameters. Below is an example of defining and using the `*-ISM` tags that exist in games like alpha 3
+```
+X-ISM -> tag:X-ISM:#900
+A-ISM -> tag:A-ISM:#090
+character:Rose
+super:Aura Soul Throw:236.2.3.p:X-ISM.A-ISM
+```
+Tags are nice because they are re-usable, and a move can have multiple tags at once.

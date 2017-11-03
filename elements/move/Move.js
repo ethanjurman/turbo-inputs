@@ -47,16 +47,19 @@ const getStyles = (moveColor = '#4caf50') => {
       color: ${isBright(moveColor) ? 'black' : 'white' };
       border-radius: 10px;
       background: ${moveColor};
-      padding: 5px;
-      margin: 5px;
+      padding: 0px 5px;
+      margin: 5px 2px 0px 2px;
     `,
     moveNameStyle: `
       font-weight: bolder;
-      background: ${darkenColor(darkenColor(moveColor))};
+      background: ${(darkenColor(moveColor))};
       border-radius: 10px 10px 0px 0px;
+      margin: -5px;
       padding: 0px 5px;
     `,
-    moveInputStyle: ``,
+    moveInputStyle: `
+      line-height: 0px;
+    `,
     moveNotesStyle: `
       padding: 0px 5px;
     `,
@@ -73,7 +76,7 @@ const getStyles = (moveColor = '#4caf50') => {
 }
 
 const renderTags = (moveTags, moveTagsStyle) => {
-  const notes = typeof moveTags === 'string' ? moveTags.trim().split('|').reverse() : moveTags
+  const notes = typeof moveTags === 'string' ? moveTags.trim().split('|').reverse() : moveTags.reverse()
   return notes.map(note => {
     const [str, noteText = note, noteColor = '#66c'] = note.match(NOTE_REG) || []
     return html`<span style=${moveTagsStyle(noteColor)}> ${noteText} </span>`

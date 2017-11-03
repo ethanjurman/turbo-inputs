@@ -18,6 +18,7 @@ const Motion = require('../../elements/move/inputs/Motion')
 const Air = require('../../elements/move/inputs/Air')
 const QC = require('../../elements/move/inputs/QC')
 const HC = require('../../elements/move/inputs/HC')
+const FC = require('../../elements/move/inputs/FC')
 const DP = require('../../elements/move/inputs/DP')
 const Punch = require('../../elements/move/inputs/Punch')
 const Kick = require('../../elements/move/inputs/Kick')
@@ -117,7 +118,7 @@ const evaluateRule = (logic, inputList) => {
   if (component.name === 'move') {
     return component.apply(null, [inputList.slice(0)])
   }
-  const params = component.args.reduce(
+  const params = (component.args || []).reduce(
     (params, argument, index) => {
       params[argument] = inputList[index + 1]
       return params
@@ -145,6 +146,8 @@ const startingLogic = {
   '421': DP.bind(null, {'flip':true}),
   '41236': HC,
   '63214': HC.bind(null, {'flip':true}),
+  '63214789': FC,
+  '41236987': FC.bind(null, {'flip':true}),
   '6': Arrow,
   '3': Arrow.bind(null, {rotation: 45}),
   '2': Arrow.bind(null, {rotation: 90}),

@@ -7,8 +7,6 @@ const errorStyle = (index) => `
 `
 
 module.exports = ({errorLines}, children) => {
-  console.log(errorLines)
-
   return html`
     <div>
       ${errorLines.map((line) => {
