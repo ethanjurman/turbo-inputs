@@ -1,14 +1,11 @@
 const htmlLoader = require('tram-one').html
 
 const NoteInputJoiner = (attrs, children) => htmlLoader()`
-  <div style=${attrs.style}> ${children.map((child) => {
-    child.setAttribute('width', '1.5em')
-    child.setAttribute('height', '1.5em')
-    return child
-  })} </div>
+  <div style=${attrs.style}> ${children} </div>
 `
 const Character = require('../../elements/Character')
 const Input = require('../../elements/move/Input')
+const MultiInput = require('../../elements/move/MultiInput')
 const Move = require('../../elements/move/Move')
 const Tag = require('../../elements/move/Tag')
 const NormalText = require('../../elements/move/NormalText')
@@ -40,12 +37,14 @@ const evaluateInputs = (logic) => (inputs) => {
   const inputList = inputs.split('.')
   return inputList.map(
     (input, index, array) => {
-      if (logic[input].args && logic[input].args.length  == 1) {
-        // is text node
+      if (logic[input].name.match(/NormalText/)) {
         return logic[input]({})
       }
       if (logic[input].name.match(/Tag/)) {
         return logic[input]({})
+      }
+      if (logic[input].name.match(/MultiInput/)) {
+        return logic[input]({logic})
       }
       return Input(null, [logic[input]({})])
     })
@@ -54,7 +53,7 @@ const evaluateInputs = (logic) => (inputs) => {
 const evaluateNotes = (logic) => (note) => {
   const style = `
     display: inline-block;
-    transform: translateY(0.4em);
+    transform: translateY(0.2em);
   `
   return note.split(/[\[\]]/).map((text, index) => {
     return index % 2 ? NoteInputJoiner({style}, evaluateInputs(logic)(text)) : text
@@ -101,6 +100,7 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
     }
     return {logic, html, characters, current, errors}
   } catch (error) {
+    console.error(error)
     return {errors: [lineNum, ...errors], logic, html, characters, current}
   }
 }
@@ -137,6 +137,7 @@ const evaluateFile = (file) => {
 }
 
 const startingLogic = {
+  'mi': MultiInput,
   'air': Air,
   'text': NormalText,
   '>': Next,

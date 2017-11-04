@@ -59,6 +59,8 @@ const getStyles = (moveColor = '#4caf50') => {
     `,
     moveInputStyle: `
       line-height: 0px;
+      font-size: 48px;
+      padding-top: 4px;
     `,
     moveNotesStyle: `
       padding: 0px 5px;
