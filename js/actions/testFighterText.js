@@ -24,11 +24,14 @@ xism -> tag:X-ISM:#944
 aism -> tag:A-ISM:#494
 vism -> tag:V-ISM:#449
 or -> text:/
+
 mk -> k:#42a5f5:#fff:MK
 hk -> k:#1565c0:#fff:HK
+
 p2 -> mi:0.5:p:p
 2x -> ct:2x:1:1.3:60:130:2
 p2x -> mi:-1:p2:2x
+
 character:Rose
 command:Soul Drain:(.4.or.6.).p2x:xism.aism.vism
 command:Soul Fade:air.(.4.or.6.).p2x:xism.aism.vism

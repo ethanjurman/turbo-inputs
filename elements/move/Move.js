@@ -1,4 +1,5 @@
 const html = require('tram-one').html()
+const FollowUp = require('./FollowUp')
 
 const NOTE_REG = /(.+)(\#[0-9a-f]{3,6})/i
 
@@ -41,26 +42,24 @@ const isBright = (color) => {
   return false
 }
 
-const getStyles = (moveColor = '#4caf50') => {
+const getStyles = (moveColor = '#4caf50', moveNotes) => {
   return {
     moveStyle: `
       color: ${isBright(moveColor) ? 'black' : 'white' };
       border-radius: 10px;
       background: ${moveColor};
-      padding: 0px 5px;
-      margin: 5px 2px 0px 2px;
+      margin: 0px 2px 0px 2px;
     `,
     moveNameStyle: `
       font-weight: bolder;
       background: ${(darkenColor(moveColor))};
       border-radius: 10px 10px 0px 0px;
-      margin: -5px;
-      padding: 2px 0px 0px 6px;
+      padding: 2px 6px 0px 6px;
     `,
     moveInputStyle: `
       line-height: 0px;
       font-size: 48px;
-      padding-top: 4px;
+      padding: 0px 5px 0px 5px;
     `,
     moveNotesStyle: `
       padding: 0px 5px;
@@ -73,7 +72,8 @@ const getStyles = (moveColor = '#4caf50') => {
       padding: 0px 2px;
       background: ${darkenColor(color)};
       float: right;
-      margin: 4px;
+      margin: 0px 4px;
+      font-size: 0.8em;
     `,
   }
 }
@@ -87,18 +87,22 @@ const renderTags = (moveTags, moveTagsStyle) => {
 }
 
 const Move = (attrs) => {
-  const {moveName, moveInput, moveNotes, moveColor, moveTags} = attrs
-  const {moveStyle, moveNameStyle, moveInputStyle, moveNotesStyle, moveTagsStyle} = getStyles(moveColor)
-  return html`
+  const {moveName, moveInput, moveNotes, moveColor, moveTags, followUp} = attrs
+  const {moveStyle, moveNameStyle, moveInputStyle, moveNotesStyle, moveTagsStyle} = getStyles(moveColor, moveNotes)
+  const moveHTML = html`
     <div style=${moveStyle} ${attrs}>
       <div style=${moveNameStyle}>
-        ${moveName}
         ${moveTags ? renderTags(moveTags, moveTagsStyle) : ''}
+        ${moveName}
       </div>
       <div style=${moveInputStyle}> ${moveInput} </div>
       <div style=${moveNotesStyle}> ${moveNotes} </div>
     </div>
   `
+  if (followUp > 0) {
+    return FollowUp({followUpCount: followUp}, moveHTML)
+  }
+  return moveHTML
 }
 
 Move.args = ['moveColor']

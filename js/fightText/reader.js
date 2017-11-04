@@ -44,7 +44,7 @@ const evaluateInputs = (logic) => (inputs) => {
         return logic[input]({})
       }
       if (logic[input].name.match(/MultiInput/)) {
-        return logic[input]({logic})
+        return logic[input]({})(logic)
       }
       return Input(null, [logic[input]({})])
     })
@@ -63,7 +63,11 @@ const evaluateNotes = (logic) => (note) => {
 
 const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum) => {
   let matches
+  let followUp = 0
   try {
+    if (line == null || line == '' || line.match(/^\/\//)) {
+      return { html, current, logic, characters, errors }
+    }
     if (matches = line.trim().match(/^character:(.+)/)) {
       const characterName = matches[1].trim()
       const characterHtml = Character({characterName})
@@ -76,7 +80,7 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
         errors,
       }
     }
-    if (matches = line.trim().match(/(.+\s)->\s+?(.*)/)) {
+    if (matches = line.trim().match(/^(\S+\s)->\s+?(.*)/)) {
       const newRule = {
         [matches[1].trim()]: evaluateRule(logic, matches[2].split(':'))
       }
@@ -88,8 +92,8 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
         errors,
       }
     }
-    if (line.trim().match(/^(\S+):/)) {
-      const move = evaluateMove(logic, line.trim().split(':'))
+    if (matches = line.match(/^([>>\s]+)?(.*)/)) {
+      const move = evaluateMove(logic, matches[2].trim().split(':'), (line.trim().match(/\>\>\s/g) || []).length)
       characters[current].push(move)
       return {
         html: html.concat(move),
@@ -101,16 +105,19 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
     }
     return {logic, html, characters, current, errors}
   } catch (error) {
-    console.error(error)
+    if (localStorage.showErrors == 'true') {
+      console.error(error)
+    }
     return {errors: [lineNum, ...errors], logic, html, characters, current}
   }
 }
 
-const evaluateMove = (logic, move) => {
+const evaluateMove = (logic, move, followUp) => {
   return logic[move[0]](
     move.slice(0),
     evaluateInputs(logic),
-    evaluateNotes(logic)
+    evaluateNotes(logic),
+    followUp
   )
 }
 
@@ -166,7 +173,7 @@ const startingLogic = {
   '(': LeftParen,
   ')': RightParen,
   'tag': Tag,
-  'move': (typeParams) => (params, evaluateInputs, evaluateNotes) => htmlLoader({
+  'move': (typeParams) => (params, evaluateInputs, evaluateNotes, followUp) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
@@ -175,9 +182,11 @@ const startingLogic = {
       moveInput=${evaluateInputs(params[2])}
       moveNotes=${evaluateNotes(params[4] || '')}
       moveTags=${evaluateInputs(params[3] || '')}
+      followUp=${followUp}
+
     />
   `,
-  'command': (params, evaluateInputs, evaluateNotes) => htmlLoader({
+  'command': (params, evaluateInputs, evaluateNotes, followUp) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
@@ -186,9 +195,10 @@ const startingLogic = {
       moveInput=${evaluateInputs(params[2])}
       moveNotes=${evaluateNotes(params[4] || '')}
       moveTags=${evaluateInputs(params[3] || '')}
+      followUp=${followUp}
     />
   `,
-  'special': (params, evaluateInputs, evaluateNotes) => htmlLoader({
+  'special': (params, evaluateInputs, evaluateNotes, followUp) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
@@ -196,9 +206,10 @@ const startingLogic = {
       moveInput=${evaluateInputs(params[2])}
       moveNotes=${evaluateNotes(params[4] || '')}
       moveTags=${evaluateInputs(params[3] || '')}
+      followUp=${followUp}
     />
   `,
-  'super': (params, evaluateInputs, evaluateNotes) => htmlLoader({
+  'super': (params, evaluateInputs, evaluateNotes, followUp) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
@@ -207,6 +218,7 @@ const startingLogic = {
       moveInput=${evaluateInputs(params[2])}
       moveNotes=${evaluateNotes(params[4] || '')}
       moveTags=${evaluateInputs(params[3] || '')}
+      followUp=${followUp}
     />
   `,
 }
