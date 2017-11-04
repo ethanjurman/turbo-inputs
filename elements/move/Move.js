@@ -62,8 +62,9 @@ const getStyles = (moveColor = '#4caf50', moveNotes) => {
       padding: 0px 5px 0px 5px;
     `,
     moveNotesStyle: `
-      padding: 0px 5px;
+      padding: 0px 5px 5px 5px;
       font-size: 16px;
+      line-height: 16px;
     `,
     moveTagsStyle: (color) => `
       color: ${isBright(color) ? 'black' : 'white' };

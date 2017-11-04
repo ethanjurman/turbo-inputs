@@ -53,8 +53,10 @@ const evaluateInputs = (logic) => (inputs) => {
 const evaluateNotes = (logic) => (note) => {
   const style = `
     display: inline-block;
-    transform: translateY(0.4em);
-    font-size: 1.5em;
+    font-size: 28px;
+    position: relative;
+    top: 0.4em;
+    margin-top: -0.4em;
   `
   return note.split(/[\[\]]/).map((text, index) => {
     return index % 2 ? NoteInputJoiner({style}, evaluateInputs(logic)(text)) : text

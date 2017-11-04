@@ -20,9 +20,9 @@ super:Super Art I - Shoryureppa:236.236.p
 super:Super Art II - Shinryuken:236.236.k::*Tap [k]
 super:Super Art III - Shippu Jinraikyaku:236.236.k
 
-xism -> tag:X-ISM:#944
-aism -> tag:A-ISM:#494
-vism -> tag:V-ISM:#449
+xism -> tag:X-ISM:#a55
+aism -> tag:A-ISM:#5a5
+vism -> tag:V-ISM:#55a
 or -> text:/
 
 mk -> k:#42a5f5:#fff:MK
