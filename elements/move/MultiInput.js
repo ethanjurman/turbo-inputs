@@ -6,7 +6,8 @@ const Input = require('./Input')
 const wrappedSpaceStyle = (spacing, inputLen) => {
   let makeSpace = '';
   if (spacing < 1) {
-    makeSpace = `margin-right:${-spacing * 1}em;`
+    const absSpacing = spacing < 0 ? -spacing : spacing
+    makeSpace = `margin-right:${-absSpacing * (inputLen - 1)}em;`
   }
   return `
     display: inline-block;
