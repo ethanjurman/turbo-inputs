@@ -1,24 +1,25 @@
 module.exports = {
-  init: () => `p_hold -> p:#000:#7d9fbd:HOLD:1.3:135:0
-hp -> p:#ff5722:#fff:HP
-to_charge -> text:to charge
-
-character:RYU
-special:Hadouken:236.p
-special:Shoryuken:623.p
-special:Tatsumaki Senpukyaku / Air:(.air.).214.k
-special:Joudan Sokutou Geri:41236.k
-super:Super Art I - Shinkuu-Hadouken:236.236.p
-super:Super Art II - Shin Shoryuken:236.236.p
-super:Super Art III - Denjin Hadouken:236.236.p.(.p_hold.to_charge.)
-
-character:KEN
-special:Hadouken:236.p
-special:Shoryuken:623.p
-special:Tatsumaki Senpukyaku / Air:(.air.).214.k
-super:Super Art I - Shoryureppa:236.236.p
-super:Super Art II - Shinryuken:236.236.k::*Tap [k]
-super:Super Art III - Shippu Jinraikyaku:236.236.k
+  init: () => `
+p_hold -> p:#000:#7d9fbd:HOLD:1.3:135:0\n
+hp -> p:#ff5722:#fff:HP\n
+to_charge -> text:to charge\n
+\n
+character:RYU\n
+special:Hadouken:236.p\n
+special:Shoryuken:623.p\n
+special:Tatsumaki Senpukyaku / Air:(.air.).214.k\n
+special:Joudan Sokutou Geri:41236.k\n
+super:Super Art I - Shinkuu-Hadouken:236.236.p\n
+super:Super Art II - Shin Shoryuken:236.236.p\n
+super:Super Art III - Denjin Hadouken:236.236.p.(.p_hold.to_charge.)\n
+\n
+character:KEN\n
+special:Hadouken:236.p\n
+special:Shoryuken:623.p\n
+special:Tatsumaki Senpukyaku / Air:(.air.).214.k\n
+super:Super Art I - Shoryureppa:236.236.p\n
+super:Super Art II - Shinryuken:236.236.k::*Tap [k]\n
+super:Super Art III - Shippu Jinraikyaku:236.236.k\n
 
 xism -> tag:X-ISM:#a55
 aism -> tag:A-ISM:#5a5

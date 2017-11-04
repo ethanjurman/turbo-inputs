@@ -1,7 +1,7 @@
 const html = require('tram-one').html({
-  CharacterButton: require('../elements/CharacterButton')
+  CharacterButton: require('../../elements/CharacterButton')
 })
-const {evaluateFile} = require('../js/fightText/reader')
+const {evaluateFile} = require('../../js/fightText/reader')
 
 const Joiner = (attrs, children) => html`<div> ${children} </div>`
 

@@ -18,9 +18,9 @@ const rightStyle = `
 
 module.exports = (store, actions) => {
   return html({
-    InputFighterText: require('../elements/customText/InputFighterText'),
-    OutputFighterText: require('../elements/customText/OutputFighterText'),
-    ErrorLinesMarker: require('../elements/customText/ErrorLinesMarker'),
+    InputFighterText: require('../../elements/customText/InputFighterText'),
+    OutputFighterText: require('../../elements/customText/OutputFighterText'),
+    ErrorLinesMarker: require('../../elements/customText/ErrorLinesMarker'),
   })`
     <div style=${wrappingStyle}>
       <div style=${leftStyle}>
