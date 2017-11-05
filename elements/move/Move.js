@@ -55,16 +55,17 @@ const getStyles = (moveColor = '#4caf50', moveNotes) => {
       background: ${(darkenColor(moveColor))};
       border-radius: 10px 10px 0px 0px;
       padding: 2px 6px 0px 6px;
+      font-size: 1em;
     `,
     moveInputStyle: `
       line-height: 0px;
-      font-size: 48px;
+      font-size: 3em;
       padding: 0px 5px 0px 5px;
     `,
     moveNotesStyle: `
       padding: 0px 5px 5px 5px;
-      font-size: 16px;
-      line-height: 16px;
+      font-size: 1em;
+      line-height: 1em;
     `,
     moveTagsStyle: (color) => `
       color: ${isBright(color) ? 'black' : 'white' };

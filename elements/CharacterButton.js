@@ -1,20 +1,30 @@
 const html = require('tram-one').html()
 
-const nameStyle = `
+const buttonStyle = `
   display: inline-block;
-  padding: 3px 3px;
+  background: white;
+  font-weight: bold;
+  min-width: calc(100% - 23px);
   border-radius: 15px;
-  border: 4px #333 solid;
-  background: black;
-  color: white;
-  margin: 4px;
+  padding: 3px 3px;
   cursor: pointer;
   user-select: none;
+  text-align: center;
 `
 const notesStyle = ``
 
-module.exports = (attrs, children) => html`
-  <div onclick=${attrs.onClick} style=${nameStyle}>
-    ${children}
+const goToCharacter = ({onClick, characterName}) => {
+  const characterDOM = document.getElementById(characterName)
+  if (characterDOM) {
+    characterDOM.scrollIntoView()
+  }
+  if (onClick) {
+    onClick(characterName)
+  }
+}
+
+module.exports = (attrs) => html`
+  <div class="CharacterButton" onclick=${goToCharacter.bind(null, attrs)} style=${buttonStyle}>
+    ${attrs.characterName}
   </div>
 `

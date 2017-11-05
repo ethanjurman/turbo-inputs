@@ -16,7 +16,7 @@ const renderCharacterNotes = (characterNotes) => {
 
 module.exports = ({characterName, characterNotes}) => html`
   <div>
-    <div style=${nameStyle}> ${characterName} </div>
+    <div id=${characterName} style=${nameStyle}> ${characterName} </div>
     ${renderCharacterNotes(characterNotes)}
   </div>
 `

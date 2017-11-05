@@ -1,3 +1,9 @@
+@media screen and (max-device-width: 480px){
+  body{
+    -webkit-text-size-adjust: none;
+  }
+}
+
 html * {
   font-family: 'Indie Flower', cursive;
 }
@@ -5,4 +11,35 @@ html * {
 svg * {
   font-family:'Anton', sans-serif;
   color: inherit;
+}
+.hidePanelButton {
+  width: inherit;
+  padding: 0px 10px;
+  border-radius: 25px;
+}
+.hidePanelButton:hover {
+  padding: 0px 50px;
+  transition: all 0.5s ease;
+  background: #bbb;
+  border-radius: 0px;
+}
+.SideBar {
+  transition: all 0.25s ease;
+}
+.CharacterButton {
+  transition: all 0.1s ease;
+  border: 3px #333 solid;
+  border-top-width: 1px;
+  margin: 4px;
+}
+.CharacterButton:hover {
+  border-bottom-width: 6px;
+  border-top-width: 2px;
+  margin: 4px;
+  margin-bottom: 0px;
+}
+.CodeSection {
+  font-family: monospace;
+  overflow: auto;
+  background: white;
 }
