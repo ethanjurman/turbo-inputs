@@ -11,12 +11,20 @@
     ],
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/gameId",
+        "function": "app"
       },
       {
-        "source": "/timestamp",
-        "function": "app"
+        "source": "/*/styles.css",
+        "destination": "/styles.css"
+      },
+      {
+        "source": "/*/font-awesome.min.css",
+        "destination": "/font-awesome-4.7.0/css/font-awesome.min.css"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   }

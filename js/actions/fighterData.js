@@ -15,9 +15,10 @@ module.exports = {
         loadState: 'done'
       }
     }
-    firebase.database().ref().child(game).on('value',
-      (data) => {
-        actions.updateFighterData({game, data: data.val()})
+    fetch(`/gameId/?gameId=${game}`)
+      .then((data) => data.text())
+      .then((data) => {
+        actions.updateFighterData({game, data})
       }
     )
     return {

@@ -5,7 +5,8 @@ const panelStyle = ({show = 'false', width = '200', color = 'white'}) => `
   border-right: 15px white solid;
   background: ${color};
   position: fixed;
-  width: ${width}px;
+  max-width: ${width}px;
+  width: 100%;
   height: 100%;
   left: ${show == 'true' ? '0px' : `-${+width + 15}px`};
   top: 0;
