@@ -4,6 +4,7 @@ const errorStyle = (index) => `
   position: absolute;
   color: red;
   top: ${index + 1}em;
+  line-height: 1em;
 `
 
 module.exports = ({errorLines}, children) => {
