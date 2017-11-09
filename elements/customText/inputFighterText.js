@@ -10,14 +10,17 @@ const inputStyle = `
   overflow: auto;
 `
 
-module.exports = ({text, updateTestText}, children) => {
-  const updateText = ({target:{value}}) => {
-    updateTestText(value)
+module.exports = ({text, updateText}, children) => {
+  const updateTextElement = ({target:{value}}) => {
+    updateText(value)
   }
-
   return html`
     <div>
-      <textarea onkeyup=${updateText} style=${inputStyle}>${text}</textarea>
+      <textarea
+        id="inputTextArea"
+        style=${inputStyle}
+        oninput=${updateTextElement}
+        >${text}</textarea>
     </div>
   `
 }

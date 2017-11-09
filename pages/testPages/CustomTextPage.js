@@ -24,17 +24,17 @@ module.exports = (store, actions) => {
   })`
     <div style=${wrappingStyle}>
       <div style=${leftStyle}>
-        <ErrorLinesMarker errorLines=${store.errorLines} />
+        <ErrorLinesMarker errorLines=${store.reader.errors} />
         <InputFighterText
           text=${store.testFighterText}
-          updateTestText=${actions.updateTestText}
+          updateText=${actions.updateText}
         />
       </div>
       <div style=${rightStyle}>
         <OutputFighterText
           text=${store.testFighterText}
-          errorLines=${store.errorLines}
-          updateErrorLine=${actions.updateErrorLine}
+          evaluateHtml=${actions.evaluateFile}
+          evaluationHtml=${store.reader.html}
         />
       </div>
     </div>

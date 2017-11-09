@@ -72,6 +72,9 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
     }
     if (matches = line.trim().match(/^character:(.+)/)) {
       const characterName = matches[1].trim()
+      if (Object.keys(characters).indexOf(characterName) !== -1) {
+        return { html, current: characterName, logic, character, errors }
+      }
       const characterHtml = Character({characterName})
       characters[characterName] = [characterHtml]
       return {
