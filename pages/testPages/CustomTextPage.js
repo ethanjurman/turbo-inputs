@@ -16,7 +16,13 @@ const rightStyle = `
   width:calc(50% - 10px);
 `
 
+let loaded = false
+
 module.exports = (store, actions) => {
+  if (!loaded && store.reader.html == undefined) {
+    actions.updateText(store.testFighterText)
+    loaded = true
+  }
   const toggleErrorInfo = actions.toggleSideBar.bind(null, 'error')
   return html({
     InputFighterText: require('../../elements/customText/InputFighterText'),

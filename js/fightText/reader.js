@@ -53,6 +53,12 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
     if (line == null || line == '' || line.match(/^\/\//)) {
       return { html, current, logic, characters, errors }
     }
+    if (line == null || line == '' || line.match(/^author:/)) {
+      return { html, current, logic, characters, errors }
+    }
+    if (line == null || line == '' || line.match(/^game:/)) {
+      return { html, current, logic, characters, errors }
+    }
     if (matches = line.trim().match(/^character:(.+)/)) {
       const characterName = matches[1].trim()
       if (Object.keys(characters).indexOf(characterName) !== -1) {

@@ -42,7 +42,7 @@ const isBright = (color) => {
   return false
 }
 
-const getStyles = (moveColor = '#4caf50', moveNotes) => {
+const getStyles = (moveName = '', moveColor = '#4caf50', moveNotes) => {
   return {
     moveStyle: `
       color: ${isBright(moveColor) ? 'black' : 'white' };
@@ -56,6 +56,8 @@ const getStyles = (moveColor = '#4caf50', moveNotes) => {
       border-radius: 10px 10px 0px 0px;
       padding: 2px 6px 0px 6px;
       font-size: 1em;
+      min-height: 1px;
+      visibility: ${moveName == '' ? 'hidden' : 'inherit'};
     `,
     moveInputStyle: `
       line-height: 0px;
@@ -90,7 +92,7 @@ const renderTags = (moveTags, moveTagsStyle) => {
 
 const Move = (attrs) => {
   const {moveName, moveInput, moveNotes, moveColor, moveTags, followUp} = attrs
-  const {moveStyle, moveNameStyle, moveInputStyle, moveNotesStyle, moveTagsStyle} = getStyles(moveColor, moveNotes)
+  const {moveStyle, moveNameStyle, moveInputStyle, moveNotesStyle, moveTagsStyle} = getStyles(moveName, moveColor, moveNotes)
   const moveHTML = html`
     <div style=${moveStyle} ${attrs}>
       <div style=${moveNameStyle}>

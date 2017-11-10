@@ -1,16 +1,17 @@
 const html = require('tram-one').html()
 
 const containerElement = (followUpCount) => `
+  margin-bottom: -3px;
 `
 
 const leftElement = (followUpCount) => `
-margin-left: ${(followUpCount - 1) * 1.5}em;
-float:left;
+  margin-left: ${(followUpCount - 1) * 1.5}em;
+  float:left;
 `
 
 const rightElement = (followUpCount) => `
-display:inline-block;
-width:calc(100% - (${(followUpCount - 1) * 1.5}em + 48px));
+  display:inline-block;
+  width:calc(100% - (${(followUpCount - 1) * 1.5}em + 48px));
 `
 
 module.exports = ({followUpCount}, children) => {

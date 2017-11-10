@@ -8,6 +8,7 @@ const inputStyle = `
   margin-left: 1em;
   white-space: nowrap;
   overflow: auto;
+  resize: none;
 `
 
 module.exports = ({text, updateText}, children) => {
