@@ -94,9 +94,9 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
     return {logic, html, characters, current, errors}
   } catch (error) {
     if (localStorage.showErrors == 'true') {
-      console.error(error)
+      console.error(line, error)
     }
-    return {errors: [lineNum, ...errors], logic, html, characters, current}
+    return {errors: errors.concat([[lineNum, line]]), logic, html, characters, current}
   }
 }
 

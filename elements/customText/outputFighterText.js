@@ -3,10 +3,14 @@ const html = require('tram-one').html({
 })
 const Joiner = (attrs, children) => html`<div> ${children} </div>`
 
-module.exports = ({text, evaluateHtml, evaluationHtml = []}) => {
+outputStyle = `
+  padding-bottom: 50px;
+`
+
+module.exports = ({text, evaluationHtml = []}) => {
   const moveList = Joiner(null, evaluationHtml || [])
   return html`
-    <div>
+    <div style=${outputStyle}>
       ${moveList}
     </div>
   `

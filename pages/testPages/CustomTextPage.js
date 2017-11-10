@@ -17,14 +17,19 @@ const rightStyle = `
 `
 
 module.exports = (store, actions) => {
+  const toggleErrorInfo = actions.toggleSideBar.bind(null, 'error')
   return html({
     InputFighterText: require('../../elements/customText/InputFighterText'),
     OutputFighterText: require('../../elements/customText/OutputFighterText'),
-    ErrorLinesMarker: require('../../elements/customText/ErrorLinesMarker'),
+    ErrorLineInfo: require('../../elements/customText/ErrorLineInfo'),
   })`
     <div style=${wrappingStyle}>
       <div style=${leftStyle}>
-        <ErrorLinesMarker errorLines=${store.reader.errors} />
+        <ErrorLineInfo
+          hide=${store.sideBar.error}
+          onClick=${toggleErrorInfo}
+          errorLines=${store.reader.errors}
+        />
         <InputFighterText
           text=${store.testFighterText}
           updateText=${actions.updateText}
@@ -33,7 +38,6 @@ module.exports = (store, actions) => {
       <div style=${rightStyle}>
         <OutputFighterText
           text=${store.testFighterText}
-          evaluateHtml=${actions.evaluateFile}
           evaluationHtml=${store.reader.html}
         />
       </div>
