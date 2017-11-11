@@ -1,15 +1,42 @@
 const Tram = require('tram-one')
+const html = Tram.html({
+  PopButton: require('../elements/PopButton'),
+  PopInput: require('../elements/PopInput'),
+})
 
-const html = Tram.html()
+const centerStyle = `
+  text-align: center;
+`
 
-module.exports = () => {
+const headerStyle = `
+  font-family: 'Permanent Marker', cursive;
+`
+
+const inputStyle = `
+`
+
+const clickLinkFunction = (link, newTab = false) => {
+  () => {
+    if (newTab) {
+      window.open(link, '_blank');
+    }
+    window.location.href = link
+  }
+}
+
+module.exports = (store, actions) => {
   return html`
-    <div>
-      <h1> TURBO INPUTS </h1>
+    <div style=${centerStyle}>
+      <h1 style=${headerStyle}> TURBO INPUTS </h1>
       <p> The place to find all your inputs </p>
-      <a href='./testPage'> Click here for a random svg page </a>
-      <a href='./customTextPage'> Click here try out the syntax page </a>
-      <a href='./readerTestPage'> Click here for an example page </a>
+      <PopButton onClick=${clickLinkFunction('https://github.com/ethanjurman/turbo-inputs')}>
+        GitHub
+      </PopButton>
+      <PopButton onClick=${clickLinkFunction('/customTextPage')}>
+        Build a Command List
+      </PopButton>
+      <h2 style=${headerStyle}> GAME SEARCH </h2>
+      <PopInput style=${inputStyle} onInput=${(v) => {console.log(v)}} defaultText="Search Game"/>
     </div>
   `
 }

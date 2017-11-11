@@ -13,6 +13,7 @@ svg * {
   font-family:'Anton', sans-serif;
   color: inherit;
 }
+
 .hidePanelButton {
   width: inherit;
   padding: 0px 10px;
@@ -27,18 +28,39 @@ svg * {
 .SideBar {
   transition: all 0.25s ease;
 }
+
 .PopButton {
   transition: all 0.1s ease;
   border: 3px #333 solid;
-  border-top-width: 1px;
   margin: 4px;
+  padding-top: 3px;
+  border-top-width: 1px;
+  border-bottom-width: 3px;
 }
 .PopButton:hover {
-  border-bottom-width: 6px;
+  margin: 4px 4px 1px 4px;
+  padding-top: 2px;
   border-top-width: 2px;
-  margin: 4px;
-  margin-bottom: 0px;
+  border-bottom-width: 6px;
 }
+
+.PopInput {
+  transition: all 0.25s ease;
+  border: 3px #333 solid;
+  margin: 4px;
+  padding-top: 3px;
+  border-top-width: 1px;
+  border-bottom-width: 3px;
+  border-radius: 25px;
+  min-width: 0px;
+}
+
+.PopInput:focus {
+  border-radius: 10px;
+  outline: 0;
+  min-width: calc(100% - 45px);
+}
+
 .CodeSection {
   font-family: monospace;
   overflow: auto;
