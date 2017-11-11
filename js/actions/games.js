@@ -1,8 +1,5 @@
 module.exports = {
   init: () => {
-    if (localStorage.games) {
-      return JSON.parse(localStorage.games)
-    }
     return {}
   },
   loadGames: (games, _, actions) => {
@@ -14,7 +11,6 @@ module.exports = {
     return games
   },
   updateGamesList: (games, gameList) => {
-    localStorage.games = JSON.stringify(gameList)
     return gameList
   }
 }
