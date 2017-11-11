@@ -26,4 +26,12 @@ app.get('/gameId', (req, res) => {
   })
 })
 
+app.get('/publish', (req, res) => {
+  const ref = firebaseApp.database().ref("gameInputs")
+  const pushRef = ref.push()
+  pushRef.set(req.body)
+  res.send(pushRef.key)
+})
+
+
 exports.app = functions.https.onRequest(app)

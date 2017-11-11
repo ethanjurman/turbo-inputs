@@ -24,7 +24,7 @@ const goToCharacter = ({onClick, characterName}) => {
 }
 
 module.exports = (attrs) => html`
-  <div class="CharacterButton" onclick=${goToCharacter.bind(null, attrs)} style=${buttonStyle}>
+  <div class="PopButton" onclick=${goToCharacter.bind(null, attrs)} style=${buttonStyle}>
     ${attrs.characterName}
   </div>
 `

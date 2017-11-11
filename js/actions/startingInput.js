@@ -1,4 +1,7 @@
 module.exports = `
+game:dummy game
+author:dummy dude
+
 p_hold -> p:#000:#7d9fbd:HOLD:1.3:135:0
 hp -> p:#ff5722:#fff:HP
 to_charge -> text:to charge

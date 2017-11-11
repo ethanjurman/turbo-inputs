@@ -3,7 +3,7 @@ const html = require('tram-one').html()
 const inputStyle = `
   position: fixed;
   width: calc(50% - 3em);
-  height: calc(100% - 3em - 50px);
+  height: calc(100% - 3em - 100px);
   font-family: monospace;
   margin-left: 1em;
   white-space: nowrap;

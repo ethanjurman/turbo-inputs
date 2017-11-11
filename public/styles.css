@@ -27,13 +27,13 @@ svg * {
 .SideBar {
   transition: all 0.25s ease;
 }
-.CharacterButton {
+.PopButton {
   transition: all 0.1s ease;
   border: 3px #333 solid;
   border-top-width: 1px;
   margin: 4px;
 }
-.CharacterButton:hover {
+.PopButton:hover {
   border-bottom-width: 6px;
   border-top-width: 2px;
   margin: 4px;

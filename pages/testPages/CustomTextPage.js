@@ -20,7 +20,7 @@ let loaded = false
 
 module.exports = (store, actions) => {
   if (!loaded && store.reader.html == undefined) {
-    actions.updateText(store.testFighterText)
+    actions.updateText(store.customFighterText)
     loaded = true
   }
   const toggleErrorInfo = actions.toggleSideBar.bind(null, 'error')
@@ -28,6 +28,7 @@ module.exports = (store, actions) => {
     InputFighterText: require('../../elements/customText/InputFighterText'),
     OutputFighterText: require('../../elements/customText/OutputFighterText'),
     ErrorLineInfo: require('../../elements/customText/ErrorLineInfo'),
+    PublishButton: require('../../elements/customText/PublishButton')
   })`
     <div style=${wrappingStyle}>
       <div style=${leftStyle}>
@@ -37,13 +38,14 @@ module.exports = (store, actions) => {
           errorLines=${store.reader.errors}
         />
         <InputFighterText
-          text=${store.testFighterText}
+          text=${store.customFighterText}
           updateText=${actions.updateText}
         />
+        <PublishButton onClick=${actions.publish}/>
       </div>
       <div style=${rightStyle}>
         <OutputFighterText
-          text=${store.testFighterText}
+          text=${store.customFighterText}
           evaluationHtml=${store.reader.html}
         />
       </div>

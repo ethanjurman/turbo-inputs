@@ -4,5 +4,14 @@ module.exports = {
     actions.evaluateFile(newText)
     localStorage.customText = newText
     return newText
+  },
+  publish: (text) => {
+      fetch('/publish', {
+      method: 'post',
+      body: text
+    }).then((gameId) => {
+      window.location.href = `/game/${gameId}`
+    })
+    return text
   }
 }
