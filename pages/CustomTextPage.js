@@ -8,6 +8,7 @@ const leftStyle = `
   display: inline-block;
   margin: 5px;
   width:calc(50% - 10px);
+  max-width: 390px;
 `
 const rightStyle = `
   display: inline-block;
