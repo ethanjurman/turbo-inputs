@@ -11,6 +11,10 @@
     ],
     "rewrites": [
       {
+        "source": "/publish",
+        "function": "app"
+      },
+      {
         "source": "/gameId",
         "function": "app"
       },

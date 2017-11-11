@@ -3,7 +3,7 @@ const html = require('tram-one').html({
 })
 const Joiner = (attrs, children) => html`<div> ${children} </div>`
 
-outputStyle = `
+const outputStyle = `
   padding-bottom: 50px;
 `
 

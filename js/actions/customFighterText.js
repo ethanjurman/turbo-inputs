@@ -9,7 +9,10 @@ module.exports = {
       fetch('/publish', {
       method: 'post',
       body: text
-    }).then((gameId) => {
+    })
+    .then((data) => data.text())
+    .then((gameId) => {
+      console.log(gameId)
       window.location.href = `/game/${gameId}`
     })
     return text

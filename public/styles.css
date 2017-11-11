@@ -43,4 +43,5 @@ svg * {
   font-family: monospace;
   overflow: auto;
   background: white;
+  max-height: calc(100% - 5em);
 }

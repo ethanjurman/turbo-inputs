@@ -26,10 +26,12 @@ app.get('/gameId', (req, res) => {
   })
 })
 
-app.get('/publish', (req, res) => {
+app.post('/publish', (req, res) => {
+  console.log("-- hit publish event --")
+  console.log('body', req.body)
   const ref = firebaseApp.database().ref("gameInputs")
-  const pushRef = ref.push()
-  pushRef.set(req.body)
+  const pushRef = ref.push(req.body)
+  console.log(pushRef.key)
   res.send(pushRef.key)
 })
 
