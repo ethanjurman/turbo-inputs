@@ -23,6 +23,7 @@ app.use(bodyParser.text())
 app.use(bodyParser.json())
 
 app.get('/gameId', (req, res) => {
+  res.set('Cache-Control', 'public, max-age=300, s-maxage=600')
   if (!req.query.gameId) {
     res.render('index', 'no game id')
   }
@@ -32,6 +33,7 @@ app.get('/gameId', (req, res) => {
 })
 
 app.get('/games', (req, res) => {
+  res.set('Cache-Control', 'public, max-age=300, s-maxage=600')
   getGames((gamesObject) => {
     res.send(gamesObject)
   })
