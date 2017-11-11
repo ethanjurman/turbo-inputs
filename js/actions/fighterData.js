@@ -9,7 +9,6 @@ module.exports = {
   },
   loadGame: ({data, loadState}, game, actions) => {
     if (localStorage[game]) {
-      console.log('loaded cached game data')
       return {
         data: localStorage[game],
         loadState: 'done'

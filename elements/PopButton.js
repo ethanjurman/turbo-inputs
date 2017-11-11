@@ -11,11 +11,23 @@ const buttonStyle = (style) => `
   cursor: pointer;
   user-select: none;
   text-align: center;
+  text-decoration: none;
+  color: black;
   ${style}
 `
 
-module.exports = ({style='', onClick}, children) => html`
-  <div class="PopButton" onclick=${onClick} style=${buttonStyle(style)}>
+const hrefLink = (link) => {
+  return () => {
+    window.location.href = link
+  }
+}
+
+module.exports = ({style='', onclick, href=""}, children) => html`
+  <a class="PopButton"
+    ${href != '' ? 'href' : 'ignore'}=${href}
+    onclick=${onclick}
+    style=${buttonStyle(style)}
+  >
     ${children}
-  </div>
+  </a>
 `

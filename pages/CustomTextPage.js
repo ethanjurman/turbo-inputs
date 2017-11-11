@@ -25,10 +25,10 @@ module.exports = (store, actions) => {
   }
   const toggleErrorInfo = actions.toggleSideBar.bind(null, 'error')
   return html({
-    InputFighterText: require('../../elements/customText/InputFighterText'),
-    OutputFighterText: require('../../elements/customText/OutputFighterText'),
-    ErrorLineInfo: require('../../elements/customText/ErrorLineInfo'),
-    PublishButton: require('../../elements/customText/PublishButton')
+    InputFighterText: require('../elements/customText/InputFighterText'),
+    OutputFighterText: require('../elements/customText/OutputFighterText'),
+    ErrorLineInfo: require('../elements/customText/ErrorLineInfo'),
+    PublishButton: require('../elements/customText/PublishButton')
   })`
     <div style=${wrappingStyle}>
       <div style=${leftStyle}>

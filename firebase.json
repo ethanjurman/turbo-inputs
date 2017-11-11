@@ -19,6 +19,10 @@
         "function": "app"
       },
       {
+        "source": "/games",
+        "function": "app"
+      },
+      {
         "source": "/*/styles.css",
         "destination": "/styles.css"
       },

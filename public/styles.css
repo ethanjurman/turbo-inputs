@@ -55,10 +55,17 @@ svg * {
   min-width: 0px;
 }
 
-.PopInput:focus {
+.SideBarOverlay {
+  transition: background 0.25s ease;
+}
+
+.PopInput:focus-within {
   border-radius: 10px;
-  outline: 0;
   min-width: calc(100% - 45px);
+}
+
+.PopInput * {
+  outline: 0;
 }
 
 .CodeSection {

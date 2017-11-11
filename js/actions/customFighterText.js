@@ -12,7 +12,6 @@ module.exports = {
     })
     .then((data) => data.text())
     .then((gameId) => {
-      console.log(gameId)
       window.location.href = `/game/${gameId}`
     })
     return text

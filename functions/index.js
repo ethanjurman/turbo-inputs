@@ -9,7 +9,12 @@ const firebaseApp = firebase.initializeApp(
 
 const getGame = (gameId, callback) => {
   const ref = firebaseApp.database().ref("gameInputs")
-  return ref.child(gameId).on('value', snap => callback(snap.val()))
+  return ref.child(gameId).once('value', snap => callback(snap.val()))
+}
+
+const getGames = (callback) => {
+  const ref = firebaseApp.database().ref("games")
+  return ref.once('value', snap => callback(snap.val()))
 }
 
 const app = express()
@@ -26,12 +31,15 @@ app.get('/gameId', (req, res) => {
   })
 })
 
+app.get('/games', (req, res) => {
+  getGames((gamesObject) => {
+    res.send(gamesObject)
+  })
+})
+
 app.post('/publish', (req, res) => {
-  console.log("-- hit publish event --")
-  console.log('body', req.body)
   const ref = firebaseApp.database().ref("gameInputs")
   const pushRef = ref.push(req.body)
-  console.log(pushRef.key)
   res.send(pushRef.key)
 })
 
