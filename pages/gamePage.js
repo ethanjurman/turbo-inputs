@@ -38,7 +38,7 @@ module.exports = (store, actions, params) => {
   const toggleCharacterSideBar = actions.toggleSideBar.bind(null, 'character')
   const toggleCodeSideBar = actions.toggleSideBar.bind(null, 'code')
   return html`
-    <div>
+    <div style="padding-top: 15px;">
       <div style=${topBarStyle}>
         <SideBar show=${store.sideBar.character} onClick=${toggleCharacterSideBar}>
           ${characters.map((character) => {

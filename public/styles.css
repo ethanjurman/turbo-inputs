@@ -9,6 +9,11 @@ html * {
   /*font-family: 'Permanent Marker', cursive;*/
 }
 
+body {
+  max-width: 800px;
+  margin: auto;
+}
+
 svg * {
   font-family:'Anton', sans-serif;
   color: inherit;
