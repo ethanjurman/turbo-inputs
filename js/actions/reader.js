@@ -17,6 +17,9 @@ module.exports = {
   },
   updateReader: (state, evaluation) => {
     evaluation.status = 'done'
+    evaluation.html = Object.keys(evaluation.characters).reduce((html, character) => {
+      return html.concat(evaluation.characters[character])
+    }, [])
     return evaluation
   },
   addPromise: (state, callback) => {

@@ -7,11 +7,22 @@ const Character = require('../../elements/Character')
 const Input = require('../../elements/move/Input')
 const startingLogic = require('./startingLogic')
 
-const {
-  input,
-  type,
-  text,
-} = require('./componentTypes')
+const memoizeObj = {}
+
+const memoize = (func, memo = {}) => {
+  const slice = Array.prototype.slice
+
+  return function() {
+    const args = slice.call(arguments)
+
+    if (memo[args]) {
+      console.log("MEMO'd")
+      return memo[args]
+    } else {
+      return (memo[args] = func.apply(this, args))
+    }
+  }
+}
 
 const evaluateInputs = (logic) => (inputs) => {
   if (!inputs) {
@@ -46,28 +57,27 @@ const evaluateNotes = (logic) => (note) => {
   })
 }
 
-const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum) => {
+const evaluateLine = ({logic, characters, current, errors}, line, lineNum) => {
   let matches
   let followUp = 0
   try {
     if (line == null || line == '' || line.match(/^\/\//)) {
-      return { html, current, logic, characters, errors }
+      return { current, logic, characters, errors }
     }
     if (line == null || line == '' || line.match(/^author:/)) {
-      return { html, current, logic, characters, errors }
+      return { current, logic, characters, errors }
     }
     if (line == null || line == '' || line.match(/^game:/)) {
-      return { html, current, logic, characters, errors }
+      return { current, logic, characters, errors }
     }
     if (matches = line.trim().match(/^character:(.+)/)) {
       const characterName = matches[1].trim()
       if (Object.keys(characters).indexOf(characterName) !== -1) {
-        return { html, current: characterName, logic, characters, errors }
+        return { current: characterName, logic, characters, errors }
       }
       const characterHtml = Character({characterName})
       characters[characterName] = [characterHtml]
       return {
-        html: html.concat(characterHtml),
         current: characterName,
         logic,
         characters,
@@ -79,7 +89,6 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
         [matches[1].trim()]: evaluateRule(logic, matches[2].split(':'))
       }
       return {
-        html,
         logic: Object.assign({}, newRule, logic),
         characters,
         current,
@@ -95,19 +104,18 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
       )
       characters[current].push(move)
       return {
-        html: html.concat(move),
         logic,
         characters,
         current,
         errors,
       }
     }
-    return {logic, html, characters, current, errors}
+    return {logic, characters, current, errors}
   } catch (error) {
     if (localStorage.showErrors == 'true') {
       console.error(line, error)
     }
-    return {errors: errors.concat([[lineNum, line]]), logic, html, characters, current}
+    return {errors: errors.concat([[lineNum, line]]), logic, characters, current}
   }
 }
 
@@ -139,7 +147,7 @@ const evaluateRule = (logic, inputList) => {
 const evaluateFile = (file) => {
   return file.split('\n').reduce(
     evaluateLine,
-    {logic: startingLogic, html:[], characters:{}, current:'', errors: []}
+    {logic: startingLogic, characters:{}, current:'', errors: []}
   )
 }
 

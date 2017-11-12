@@ -3,7 +3,6 @@ const html = require('tram-one').html({
   SideBar: require('../elements/SideBar'),
   PopButton: require('../elements/PopButton'),
 })
-const {evaluateFile} = require('../js/fightText/reader')
 
 const Joiner = (attrs, children) => html`<div> ${children} </div>`
 

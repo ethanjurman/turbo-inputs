@@ -20,7 +20,7 @@ const rightStyle = `
 let loaded = false
 
 module.exports = (store, actions) => {
-  if (!loaded && store.reader.html == undefined) {
+  if (!loaded && store.reader.characters == undefined) {
     actions.updateText(store.customFighterText)
     loaded = true
   }

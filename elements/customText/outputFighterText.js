@@ -7,10 +7,8 @@ const outputStyle = `
   padding-bottom: 50px;
 `
 
-module.exports = ({text, evaluationHtml = []}) => {
-  return html`
-    <div style=${outputStyle}>
-      ${evaluationHtml}
-    </div>
-  `
-}
+module.exports = ({text, evaluationHtml = []}) => html`
+  <div style=${outputStyle}>
+    ${evaluationHtml}
+  </div>
+`
