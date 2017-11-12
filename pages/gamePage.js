@@ -21,6 +21,7 @@ const topBarStyle = `
 `
 
 module.exports = (store, actions, params) => {
+  let output
   switch (store.fighterData.loadState) {
     case 'not_started':
       actions.loadGame(params.gameId)
@@ -28,11 +29,18 @@ module.exports = (store, actions, params) => {
     case 'pending':
       return null
     case 'done':
-      break
+      if (store.reader.status == 'done') {
+        output = store.reader
+        break
+      } else {
+        if (store.reader.status == 'empty') {
+          actions.evaluateFile(store.fighterData.data)
+        }
+        return null
+      }
     default:
-      return null
+      return "Page could not be loaded"
   }
-  const output = evaluateFile(store.fighterData.data)
   const moveList = Joiner(null, output.html)
   const characters = Object.keys(output.characters)
   const toggleCharacterSideBar = actions.toggleSideBar.bind(null, 'character')
@@ -40,7 +48,7 @@ module.exports = (store, actions, params) => {
   return html`
     <div style="padding-top: 15px;">
       <div style=${topBarStyle}>
-        <SideBar show=${store.sideBar.character} onClick=${toggleCharacterSideBar}>
+        <SideBar show=${store.sideBar.character} onClick=${toggleCharacterSideBar} style="text-align:center;">
           ${characters.map((character) => {
             return html`<CharacterButton onClick=${toggleCharacterSideBar} characterName=${character} />`
           })}

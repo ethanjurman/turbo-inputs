@@ -4,7 +4,7 @@ let evaluateTime
 
 module.exports = {
   init: () => {
-    return {errors: []}
+    return {errors: [], promises: [], status: 'empty'}
   },
   evaluateFile: (state, text, actions) => {
     clearTimeout(evaluateTime)
@@ -12,9 +12,15 @@ module.exports = {
       const evaluation = evaluateFile(text)
       actions.updateReader(evaluation)
     }, 150)
+    state.status = 'evaluating'
     return state
   },
   updateReader: (state, evaluation) => {
+    evaluation.status = 'done'
     return evaluation
+  },
+  addPromise: (state, callback) => {
+    state.promises = state.promises.concat(callback)
+    return state
   }
 }

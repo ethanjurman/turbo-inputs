@@ -41,6 +41,7 @@ module.exports = (store, actions) => {
         <InputFighterText
           text=${store.customFighterText}
           updateText=${actions.updateText}
+          isLoaded=${store.reader.status == 'done'}
         />
         <PublishButton onClick=${actions.publish}/>
       </div>

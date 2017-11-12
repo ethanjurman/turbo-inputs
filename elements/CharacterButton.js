@@ -4,7 +4,7 @@ const html = require('tram-one').html({
 
 const buttonStyle = `
   width: 100%;
-  max-width: calc(100% - 33px);
+  max-width: calc(100% - 50px);
 `
 
 const goToCharacter = ({onClick, characterName}) => {

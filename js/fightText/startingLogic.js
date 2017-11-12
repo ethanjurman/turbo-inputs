@@ -48,7 +48,7 @@ module.exports = {
   '(': LeftParen,
   ')': RightParen,
   'tag': Tag,
-  'move': (typeParams) => (params, evaluateInputs, evaluateNotes, followUp) => htmlLoader({
+  'move': (typeParams) => (params, evaluateInputs, evaluateNotes, lineNum, followUp) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
@@ -57,11 +57,12 @@ module.exports = {
       moveInput=${evaluateInputs(params[2])}
       moveNotes=${evaluateNotes(params[4] || '')}
       moveTags=${evaluateInputs(params[3] || '')}
+      lineNum=${lineNum}
       followUp=${followUp}
 
     />
   `,
-  'command': (params, evaluateInputs, evaluateNotes, followUp) => htmlLoader({
+  'command': (params, evaluateInputs, evaluateNotes, lineNum, followUp) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
@@ -70,21 +71,24 @@ module.exports = {
       moveInput=${evaluateInputs(params[2])}
       moveNotes=${evaluateNotes(params[4] || '')}
       moveTags=${evaluateInputs(params[3] || '')}
+      lineNum=${lineNum}
       followUp=${followUp}
     />
   `,
-  'special': (params, evaluateInputs, evaluateNotes, followUp) => htmlLoader({
+  'special': (params, evaluateInputs, evaluateNotes, lineNum, followUp) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
+      moveColor='#4caf50'
       moveName="${params[1]}"
       moveInput=${evaluateInputs(params[2])}
       moveNotes=${evaluateNotes(params[4] || '')}
       moveTags=${evaluateInputs(params[3] || '')}
+      lineNum=${lineNum}
       followUp=${followUp}
     />
   `,
-  'super': (params, evaluateInputs, evaluateNotes, followUp) => htmlLoader({
+  'super': (params, evaluateInputs, evaluateNotes, lineNum, followUp) => htmlLoader({
     Move: require('../../elements/move/Move')
   })`
     <Move
@@ -93,6 +97,7 @@ module.exports = {
       moveInput=${evaluateInputs(params[2])}
       moveNotes=${evaluateNotes(params[4] || '')}
       moveTags=${evaluateInputs(params[3] || '')}
+      lineNum=${lineNum}
       followUp=${followUp}
     />
   `,

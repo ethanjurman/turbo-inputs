@@ -11,7 +11,7 @@ const inputStyle = `
   resize: none;
 `
 
-module.exports = ({text, updateText}, children) => {
+module.exports = ({text, updateText, isLoaded}, children) => {
   const updateTextElement = ({target:{value}}) => {
     updateText(value)
   }

@@ -1,6 +1,6 @@
 const htmlLoader = require('tram-one').html
 
-const panelStyle = ({show = 'false', width = '200', color = 'white'}) => `
+const panelStyle = ({show = 'false', width = '200', color = 'white', style = ''}) => `
   border-right: 15px white solid;
   background: ${color};
   position: fixed;
@@ -10,6 +10,9 @@ const panelStyle = ({show = 'false', width = '200', color = 'white'}) => `
   left: ${show == 'true' ? '0px' : `-${+width + 15}px`};
   top: 0;
   z-index: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  ${style}
 `
 
 const panelButtonStyle = ({show = 'false'}) => `
@@ -46,7 +49,7 @@ module.exports = (attrs, children) => htmlLoader({HideButton})`
       <HideButton onClick=${attrs.onClick} />
       ${children}
     </div>
-    <div class="SideBarOverlay" style=${overlayStyle(attrs)}></div>
+    <div class="SideBarOverlay" onclick=${attrs.onClick} style=${overlayStyle(attrs)}></div>
     <span onclick=${attrs.onClick} style=${panelButtonStyle(attrs)}>
       <i class="fa ${attrs.icon || "fa-bars"}" aria-hidden="true"></i>
     </span>

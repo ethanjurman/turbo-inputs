@@ -87,7 +87,12 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
       }
     }
     if (matches = line.match(/^([>>\s]+)?(.*)/)) {
-      const move = evaluateMove(logic, matches[2].trim().split(':'), (line.trim().match(/\>\>\s/g) || []).length)
+      const move = evaluateMove(
+        logic,
+        matches[2].trim().split(':'),
+        lineNum,
+        (line.trim().match(/\>\>\s/g) || []).length
+      )
       characters[current].push(move)
       return {
         html: html.concat(move),
@@ -106,12 +111,13 @@ const evaluateLine = ({logic, html, characters, current, errors}, line, lineNum)
   }
 }
 
-const evaluateMove = (logic, move, followUp) => {
+const evaluateMove = (logic, move, lineNum, followUp) => {
   return logic[move[0]](
     move.slice(0),
     evaluateInputs(logic),
     evaluateNotes(logic),
-    followUp
+    lineNum,
+    followUp,
   )
 }
 
