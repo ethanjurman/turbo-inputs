@@ -8,10 +8,9 @@ const outputStyle = `
 `
 
 module.exports = ({text, evaluationHtml = []}) => {
-  const moveList = Joiner(null, evaluationHtml || [])
   return html`
     <div style=${outputStyle}>
-      ${moveList}
+      ${evaluationHtml}
     </div>
   `
 }
